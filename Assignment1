@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Question 4-->
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Question 5-->
+
+    <style type="text/css">
+        h1.colorPurp {
+            color: #550099;
+        }
+
+    </style>
+    <!--  Question 7 -->
+    <br>Question 7</br>
+    <script type="text/javascript">
+        document.write("<img src= https://imgs.xkcd.com/comics/self_description.png\>");
+    </script>
+
+
+</head>
+
+<body>
+
+<br>Question 5</br>
+<h1 class = colorPurp>Header Color Test</h1>
+<!--  Question 6 -->
+<br>Question 6</br>
+<img src="https://imgs.xkcd.com/comics/self_description.png">
+
+<!-- Question 8 -->
+<br>Question 8</br>
+<ul>
+    <li><a href="https://consequenceofsound.files.wordpress.com/2016/02/bernie.jpg?quality=80&w=806">Visualization 1 </a> </li>
+    <li><a href="https://consequenceofsound.files.wordpress.com/2016/02/bernie.jpg?quality=80&w=806">Visualization 2 </a> </li>
+</ul>
+
+</body>
+</html>
