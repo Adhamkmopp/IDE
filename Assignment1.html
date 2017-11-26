@@ -1,45 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <!-- Question 4-->
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assignment_style.css">
 
     <!-- Question 5-->
     <style type="text/css">
         h1.colorPurp {
             color: #550099;
         }
+
     </style>
     <!--  Question 7 -->
-
     <script type="text/javascript">
         function  loadImage() {
             document.write("<img src= https://imgs.xkcd.com/comics/self_description.png\>");
-        };
-
+        }
     </script>
-
 
 </head>
 
 <body>
+<div id="head"> <h4>IDE2017 - Group Adham + Carlotta</h4> </div>
 
-<br>Question 5: Header CSS Style:</br>
-<h1 class = colorPurp>Header Color Test</h1>
+<br>
+    <div class="central_body">
+        <h1>Assignment 1</h1>
+        <br>
+        <h3>Question 5: Header CSS Style</h3>
+        <h1 class = colorPurp>Header Color Test</h1>
 
-<br>Question 6: Small, "Interesting" Image:</br>
-<img src="https://imgs.xkcd.com/comics/self_description.png">
+        <h3>Question 6: Small, "Interesting" Image </h3>
+        <img src="https://media.mnn.com/assets/images/2015/09/adorable-sphynx-kitten.jpg.653x0_q80_crop-smart.jpg" style="width: 30%; height: 30%">
 
-<br>Question 7: JavaScript Image From Outside Body:</br>
-<script type="text/javascript">
-loadImage();
-</script>
+        <h3>Question 7: JavaScript Image From Outside Body:</h3>
 
-<br>Question 8: List of Links To "Interesting" Visualizations:</br>
-<ul>
-    <li><a href="https://consequenceofsound.files.wordpress.com/2016/02/bernie.jpg?quality=80&w=806">Visualization 1 </a> </li>
-    <li><a href="https://consequenceofsound.files.wordpress.com/2016/02/bernie.jpg?quality=80&w=806">Visualization 2 </a> </li>
-</ul>
+        <script type="text/javascript">
+            loadImage();
+        </script>
+
+        <br>
+        <h3>Question 8: List of Links To "Interesting" Visualizations:</h3>
+        <ul>
+            <li><a href="http://globe.cid.harvard.edu/?mode=productspace3D&id=MX">Economy complexity</a> </li>
+            This is a visualization of world trade. The data is presented through 6 seperate layers including a "Country Stacks" layers akin 
+            to stacked barplots of all exports per country, and a more detailed "Map View"; a visualization of all exports of 
+            a specific product category across the glibe. We will focus on these two and ignore the more technical "Products Space/Stacks"
+            . Also, when a country is selected, a small linked thumbnail appears in the bottom left corner leading to a seperate page 
+            for a more detailed breakdown of the exports of that country, where it is given prominently as a Stacked Chart or a Product Tree Map
+            (And once more 4 other visualization that are too technically steeped in economics to decipher).
+            <br>
+            <span class="positive_aspects">Positive aspects: </span>
+            <br> There appears to be an impressive amount of data represented in one space. For example, in the "Country Stacks" view, selecting
+            "Electronic Filaments" from the stacked product bar of Germany shows the export connections to all other countries that import that
+            product. The "Map View" with all selected products categories gives a quick, sensible, overview of an economy's diversity; in the case 
+            of Saudi Arabia for example, it is clear that it relies almost exclusively on petrolium products while a country like 
+            Brazil is much more diversified.
+<<<<<<< Adhamkmopp-patch-1
+            <br>
+            The seperate charts page contains a "Stacked Chart" graph which is a stacked barplot of product categories by year for
+=======
+            The seperate charts page contains a "Stacked Chart" graph which is a stacked histrogram of product categories by year for
+>>>>>>> master
+            the selected country. The scale is appropriate, the colors are visibly seperable and differences are well highlighted by 
+            product and by year.
+            <br>
+            <span class="negtive_aspects">Negative aspects: </span> Already there is an issue with resolution, the font is disproportionately smaller
+            than everything making it difficult to read regardless of resolution. Finding a single product such as "Electronic Filaments" in a 
+            category of perhaps thousands of niche products can be a challenge; it puts to question the purpose of including such level of detail 
+            and data in the first place if it is not utilized properly. Due to the nature of the graph itself, the stacked barplots are 3-dimensional and widely seperated 
+            making it difficult to do a comparison between disparate countries, outside of obivously massive differences in exports. 
+            (Ironically, tilting the graph to a horizontal level forces an unintended clean 2-dimensional barplot). The "Map View" suffers from
+            the same setbacks as the "Country Stacks" view; unless given massive differences in exports, comparisons can become very difficult.
+            China for example has a global export output that is atleast twice as Germany's but that is not clear from the "Map View". Infact,
+            China appears more pale as product export points are more spread out over a much larger landscape.
+            <br>
+
+            Finally, in a seperate page there is the Product Tree plot, and a Stacked Chart. The Product Tree Plot gives a 
+            breakdown of percentage of exports in terms of areas but it can be misleading due to confusion with (1) orientation (verticle and horizontal),
+            of equally sized rectangles and (2) equally sized rectangles having prominently different shapes
+            (like a perfect square and a thin-and-long rectangle). Both these aspects of the graph can lead to perceived differences
+            that are not actually there. Sadly, a pie chart could be more appropriate in this case.
+            <br>
+            <li><a href="http://www.evolutionoftheweb.com/">The evolution of the web </a> </li>
+            The 'Browsers and Technologies' section tells the story of how web browsers have evolved from 1990 to 2013
+            showing the introduction over time of different technologies and web programming languages.
+            <br>
+            <span class="positive_aspects">Positive aspects: </span> When opening the web page the effect of running over
+            the timeline gives a sensation of how complex the evolution of web browsers has been in the period analyzed.
+            It is interesting to see how the web browser changed their aspects bly clicking on their icons and having
+            a pop up appearing.
+            Using different colours for each of the technologies helps the user to distinguish between them.
+            <br>
+            <span class="negtive_aspects">Negative aspects: </span> Nevertheless, the distinction is no longer visible
+            and it gets messy from 2007 onwards when the number of technologies introduced increases.
+            The visualization could be improved turning the coloured lines in coloured concentric circles around the number
+            of the version of eah browsers. This would reduce the messy effect at the end of the timeline and would
+            actually show all of the information which are now hidden by overlapping unuseful lines.
+        </ul>
+
+        <h2>Adham</h2>
+        <ul>
+            <li>What type of data would you like to visualize, and where would you get access to this data? </li>
+            <li>What story would the combination of text and visualization tell?</li>
+            <li>Who is the intended audience?</li>
+            <li>A sketch/mockup of the visualization.</li>
+        </ul>
+
+        <h2>Carlotta</h2>
+        <ul>
+            <li>What type of data would you like to visualize, and where would you get access to this data? </li>
+            <li>What story would the combination of text and visualization tell?</li>
+            <li>Who is the intended audience?</li>
+            <li>A sketch/mockup of the visualization.</li>
+        </ul>
+
+
+    </div>
+
+    <div class="lateral_bar">
+
+        <br>
+        <h3>This is the list of all assignments:</h3>
+        <ul>
+            <li>
+                <a href="assignment2_page.html">Assignment 2</a>
+            </li>
+        </ul>
+    </div>
+
 
 </body>
 </html>
