@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Assignment 4</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="hands.js"></script>
+    <script src="clusterfuck.js"></script>
+    <link rel="stylesheet" type="text/css" href="hands_style.css">
+    <link rel="stylesheet" type="text/css" href="assignment_style.css">
+
+
+</head>
+
+<body>
+<div id="head"> <h4>IDE2017 - Group Adham + Carlotta</h4> </div>
+<br>
+
+<div class="c_body">
+    <h2>Show of hands</h2>
+    <div class="content_container">
+        <p id="savage">
+            The first dataset used for the following visualisations is a 112-dimensional dataset with 40 data points in it. Each data
+            point represents the outline of a hand. The first 56 variables are x-coordinates of the points around the hands outline
+            and the next 56 variables are y-coordinates. The second dataset used is the result of applying the
+            <a href="https://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a> (Principal Component Analysis) algorithm.
+            PCA is used for dimensionality reduction of high-features datasets. It is defined as a linear transformation that
+            transforms the data to a new coordinate system such that the greatest variance by some projection of the data comes
+            to lie on the first coordinate. The original dataset provided has been modified using this <a href="add_header_script.R">script</a>
+            to add a header to the columns. The dataset contains 40 rows, one for each hand and 112 columns one for each of the
+            principal components.
+        </p>
+        <p>
+            The plot on the right shows the first two PC from the PCA data set. The points have been clustered with the
+            <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means algorithm </a> using the library
+            <a href="https://github.com/harthur/clusterfck">clusterfck</a>. The number of clusters set is 5 and the points are coloured
+            accordingly. Note that the k-means algorithm initialises random centroids every time it is run. This leads to different clusters
+            and colorings every time that the page is being reloaded. The randomness leads sometimes to show the presence of outliers
+            (hand 37 and hand 39).
+        </p>
+    </div>
+
+    <div class="pca_cluster">
+        <svg id="pca_cluster" width="400" height="400"></svg>
+    </div>
+    <br>
+    <p class="content_container">
+        The toggle button allows the user to enter two modalities:
+        <ul class="content_container">
+            <li><b>One hand outlines:</b> When the toggle button is grey then the user can clicks on a point in the PCA plot and
+                the outline of that hand is shown in the visualisation on the left.</li>
+            <li><b>All hand outlines:</b> When the toggle button is clicked and it turns blue, all the outlines of all the hands are shown together.
+                Furthermore, when the user hovers over a point in the PCA plot, the corresponding outline is highlighted in the
+                visualisation on the left.</li>
+        </ul>
+    <p class="content_container">  In addition there is a drop-down menu that allows the user to choose which two PC are plotted against each other. </p>
+    </p>
+    <p class="content_container">
+        Looking at the PCA plot we see in general that points that are closer together have a similar outline.
+        It is possible to notice that the first PC component catches the hands thickness while second PC catches
+        the separation between the fingers. On top of that, starting from PC 39 up to 112 the values of the variance captures
+        values of zero.
+    </p>
+    <p class="content_container">
+        In conclusion, it is apparent that the first two PCs are enough to capture the variance of the shape of the hands,
+        or at least the hand thickness and separation of the fingers.
+    </p>
+    <br>
+    <br>
+    <div id="hand_plot" class="svg-container">
+
+        <!-- Rounded switch -->
+        Toggle button selecting the views
+        <label class="switch">
+            <input type="checkbox" id="myCheckbox">
+            <span class="slider round"></span>
+        </label>
+
+        <div id="pca_control_bar">
+            <label for="value1">PC number: </label><select class="dropdown" id="value1"></select>
+            <label for="value2">PC number: </label><select class="dropdown" id="value2"></select>
+            <button id="button1">Update PCA plot</button><br/>
+        </div>
+
+        <svg id="all_hands" width="600" height="600">
+            <g id ="hands"> </g>
+        </svg>
+
+        <div id="pca_container">
+            <svg id="pca_plot" width="610" height="600"></svg>
+        </div>
+    </div>
+
+    <p>
+        <b>Adham: </b> Display the datafile row index as a tooltip when the mouse hovers over its point in the PCA panel.
+                        Support changing which two PCA-variables.
+        <br>
+        <b>Carlotta: </b> Display multiple hand-outlines and highlight the corresponding hand when a PCA point is selected.
+        Together: Add coloring based on clustering.
+    </p>
+
+</div>
+
+
+<div class="bottom_bar">
+    <h3>List of assignments:</h3>
+    <ul>
+        <li><a href="index.html">Assignment 1</a></li>
+        <li><a href="assignment2_page.html">Assignment 2</a> </li>
+        <li><a href="assignment3_page.html">Assignment 3</a></li>
+        <li><a href="assignment4_page.html">Assignment 4</a></li>
+        <li><a href="assignment5_page.html">Assignment 5</a></li>
+    </ul>
+</div>
+
+<div id="christmas">
+    <h3> Merry Xmas & Happy New Year </h3>
+    <img src="cat_christm.jpg" style="width: 25%; height: 25%" >
+</div>
+
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,41 @@
+.node circle {
+    fill: #fff;
+    stroke-width: 2px;
+}
+
+.node text {
+    font: 13px sans-serif;
+}
+
+.node--internal text {
+    text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    fill:green;
+    max-width: 60px;
+    height: auto;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 5px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}

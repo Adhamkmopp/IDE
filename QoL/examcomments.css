@@ -1,0 +1,404 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: darkgray;
+    font-weight: normal;
+    margin: auto;
+}
+
+html, body{
+    width:100%;
+    height:100%;
+}
+
+p {
+    line-height: 150%;
+    width: 80%;
+    height:80%;
+    align-content: center;
+    margin: auto;
+    padding: 15px 0 20px 0;
+}
+
+h2 {
+    padding: 30px 0 0 0;
+    width: 80%;
+    align-content: center;
+    margin: auto;
+    background-color: white;
+
+}
+
+.maps_and_donuts{
+    align-items:stretch;
+    align-content: stretch;
+    position: relative;
+    display: flex;
+    margin: auto;
+    height:auto;
+    width:90%;
+    flex-direction: row;
+    flex: 1 1 100vw;
+
+}
+
+.svg_map_donuts {
+    display:inline-block;
+    background-color: #9896A4;
+    float: left;
+    border: 0.1px dashed;
+}
+
+.arc text {
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+
+.lineToLabel {
+    fill: none;
+    stroke: #756bb1;
+    stroke-width: 1px;
+}
+
+.tooltip {
+    position: absolute;
+    font-size: 12px;
+    width:  auto;
+    height: auto;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
+
+.country_font{
+    font-family: Lato, sans-serif;
+    font-size: 10px;
+    fill: black;
+    fill-opacity: .5;
+}
+
+#text_control_box{
+    height:40vh;
+    width: 10vw;
+    position: relative;
+    display:inline-block;
+    margin-top: 50px;
+    float: bottom;
+    background-color: ghostwhite;
+    font-size: 0.75vw;
+}
+
+
+.controls_box{
+    position:relative;
+    display:inline-block;
+    font-size: 100%;
+    width: 25%;
+    height: 100%;
+    margin: 10px 10px 60px 10px;
+
+}
+
+#pie_contrainer{
+    flex-basis: auto;
+    max-height:100%;
+}
+
+#europe_contrainer{
+    flex-basis: auto;
+}
+#the_form {
+    flex-basis: auto;
+
+    display:flex;
+    transform: translateY(+20px);
+    background-color: inherit;
+    padding: 5px 5px 5px 5px;
+}
+
+fieldset, input{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 150%;
+}
+
+fieldset[name="years_selection"] {
+    float: left;
+    margin: 0;
+    border: 2px groove ghostwhite;
+
+}
+
+fieldset[name="variables_selection"] {
+    margin: 0;
+    border: 2px groove ghostwhite;
+}
+
+.arrow {
+    cursor: pointer;
+    border-top: 1vmin solid darkred;
+    border-right: 1vmin solid darkred;
+    width: 20px;
+    height: 20px;
+}
+
+.left {
+    margin: auto;
+    display: inline;
+    position:absolute;
+    bottom: 50%;
+    right:95%;
+    transform: rotate(-135deg);
+}
+
+.right {
+    margin: auto;
+    display: inline;
+    position:absolute;
+    bottom: 50%;
+    right:30%;
+    transform: rotate(45deg);
+
+}
+
+.arrow_up {
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    border-top: 1vmin solid white;
+    border-right: 1vmin solid white;
+    width: 20px;
+    height: 20px;
+    transform: rotate(-45deg);
+    -webkit-animation: bounce 1s infinite;
+    -webkit-transition: 10s ease-out;
+    -webkit-transition-duration: 30s;
+}
+
+.arrow_down {
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    border-top: 1vmin solid white;
+    border-right: 1vmin solid white;
+    width: 20px;
+    height: 20px;
+    transform: rotate(-225deg);
+    -webkit-animation: bounce 1s infinite;
+    -webkit-transition: 10s ease-out;
+    -webkit-transition-duration: 30s;
+
+}
+
+@-webkit-keyframes bounce {
+    0%       { bottom:5px; }
+    25%, 75% { bottom:15px; }
+    50%      { bottom:20px; }
+    100%     {bottom:0;}
+}
+
+.legend {
+    margin-right:20px;
+    text-anchor: start;
+    font-size: 14px;
+}
+.axis text {
+    fill: black;
+    font-size :100%;
+    font-family: 'Lato', sans-serif;
+}
+
+/*SVG*/
+
+#social_exclusion{
+    position: relative;
+    display:absolute;
+    background-color: ghostwhite;
+}
+
+#social_deprivation{
+    position: relative;
+    background-color: ghostwhite;
+}
+
+#WHO_points_gender{
+    position: relative;
+    background-color: ghostwhite;
+}
+
+#WHO_points_age{
+    position: relative;
+    background-color: ghostwhite;
+
+}
+
+.line {
+    fill: none;
+    stroke: #383838;
+    stroke-width: 1px;
+    stroke-dasharray: 2,2;
+
+}
+/*LAYOUT FIGO*/
+
+#front_img{
+    display: flex;
+    align-content: center;
+    margin: auto;
+    width: 70%;
+    position: center;
+    max-width: 100%;
+}
+
+#div_intro {
+    max-width: 100%;
+    margin: auto;
+    background-color: white;
+}
+
+#div_map_donuts{
+    max-width: 100%;
+    margin: auto;
+    background-color: white;
+    display: flex;
+    position: center;
+    align-content: center;
+}
+
+#div_soc_excl{
+    position:relative;
+    margin: auto;
+    background-color: white;
+    align-content: center;
+    font-size: 1vw;
+}
+
+
+
+#div_who{
+    position:relative;
+    margin: auto;
+    background-color: white;
+    align-content: center;
+    font-size: 1vw;
+
+}
+
+.soc_excl_barplots{
+    display: flex;
+    position:relative;
+    width: 90%;
+    align-content: center;
+    margin: auto;
+    background-color: ghostwhite;
+}
+
+.soc_depr_barplots{
+    display: flex;
+    position:relative;
+    width: 90%;
+    align-content: center;
+    margin: auto;
+    background-color: ghostwhite;
+}
+
+.who_points_gender{ /*container*/
+    display: flex;
+    position:relative;
+    width: 90%;
+    align-content: center;
+    margin: auto;
+    background-color: ghostwhite;
+}
+
+.who_points_age{ /*container*/
+    display: flex;
+    position:relative;
+    width: 90%;
+    align-content: center;
+    margin: auto;
+    background-color: ghostwhite;
+}
+
+
+#text_excl_contact_corr {
+    background-color: ghostwhite;
+    width: 40%;
+    margin: auto;
+    float: left;
+    height: 100%;
+    font-size: 1vw;
+}
+
+#text_excl_depr_corr{
+    background-color: ghostwhite;
+    width: 40%;
+    margin: auto;
+    position: relative;
+    float: left;
+    height: 100%;
+    font-size: 1vw;
+}
+
+#text_points_gender {
+    background-color: ghostwhite;
+    width: 40%;
+    margin: auto;
+    float: right;
+    height: 100%;
+    font-size: 1vw;
+}
+
+#text_points_age{
+    background-color: ghostwhite;
+    width: 40%;
+    margin: auto;
+    float: right;
+    height: 100%;
+    font-size: 1vw;
+}
+
+#div_conclusion{
+    max-width: 100%;
+    margin: auto;
+    background-color: white;
+    position: center;
+    align-content: center;
+    font-size: 1vw;
+
+}
+
+div.inline {
+    display: inline;
+    position: static;
+    margin-right: 50px;
+    left :100px;
+    right: 100px;
+    width: 200px;
+    height: 200px;
+    border: 3px solid navajowhite;
+    background-color: papayawhip;
+
+}
+
+div.block {
+    display: block;
+    position: static;
+    width: 200px;
+    height: 200px;
+    border: 3px solid navajowhite;
+    background-color: papayawhip;
+
+}
+
+
+div.inblock {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-left: 50px;
+    border: 3px solid navajowhite;
+    background-color: papayawhip;
+}
+

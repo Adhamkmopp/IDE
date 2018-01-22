@@ -1,0 +1,181 @@
+#all_hands{
+    background-color: floralwhite;
+    border: 1px solid black;
+    float: left;
+}
+
+#pca_plot {
+    background-color: floralwhite;
+    border: 1px solid black;
+    float: right;
+}
+
+/* Set style for x-axis */
+.axis.x {
+    font-size: 70%;
+}
+/* Set style for axis text elements */
+.axis text {
+    fill:black;
+    font-family: Lato sans-serif;
+}
+
+.button rect {
+    stroke: #999faa; /* navy 40% */
+    stroke-width: 2px;
+}
+
+.button rect.pressed {
+    fill: #000f2b; /* navy 100% */
+}
+
+.button #gradient-start {
+    stop-color: #999faa; /* navy 40% */
+    stop-opacity: 1;
+}
+
+.button #gradient-stop {
+    stop-color: #4d576b; /* navy 70% */
+    stop-opacity: 1;
+}
+
+.button #gradient-start.active, .button #gradient-start.pressed {
+    stop-color: #4d576b; /* navy 70% */
+}
+
+.button #gradient-stop.active, .button #gradient-stop.pressed {
+    stop-color: #000f2b; /* navy 100% */
+}
+
+.button text {
+    font-size: 30px;
+    fill: #eee;
+    pointer-events: none;
+    text-anchor: middle;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+input {
+    border: 1px dotted #ccc;
+    background: white;
+    font-family: inherit;
+    padding: 5px 5px;
+    font-size: 10px;
+    margin: 15px 10px 15px 0;
+    color: black;
+}
+
+input:focus {
+    background-color:yellow;
+    outline: none;
+}
+
+.dropdown{
+    font-family: inherit;
+}
+
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    fill: green;
+    max-width: 60px;
+    height: auto;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 5px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 25px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    float: left;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #778899;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: 	#191970	;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px 	#191970	;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 30px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+#pca_control_bar{
+    width: 50%;
+    float: right;
+}
+
+
+#pca_cluster{
+    background-color: floralwhite;
+    border: 1px solid black;
+    float: right;
+    font-size: 70%;
+
+}
+
+p {
+    line-height: 150%;
+}
+
+p#savage{
+    float: left;
+}
+
+#christmas{
+    position: relative;
+    bottom: 5px;
+    left:0%;
+}

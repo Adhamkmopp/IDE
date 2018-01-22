@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 2</title>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var dataset;
+    d3.csv("cairo.csv", function( data) {
+        data.forEach(function(d){
+            d.Year = +d.Year;
+            d.Month=+d.Month;
+            d.Temperature=+d.Temperature
+
+        });
+        firstViz(data)
+
+    });
+
+    function firstViz(data){
+
+        var margin = {top: 100, right: 100, bottom: 100, left: 100};
+        var h = 1024 - margin.left - margin.right;
+        var w = 2048 - margin.top - margin.bottom;
+
+        var scale = d3.scaleLinear();
+
+        var xmax= data.length;
+        var xmin = 1;
+        var ymax= d3.max(data, function(d){return d.RawTemperature;});
+        var ymin = d3.min(data, function(d){return d.RawTemperature;});
+
+        var xScale = d3.scaleLinear()
+            .domain([xmin,xmax])
+            .range([0, w]);
+        var yScale = d3.scaleLinear()
+            .domain([ymin,ymax])
+            .range([h,0]);
+
+        svg = d3.select("body")
+            .append("svg")
+            .attr("width", w + margin.left + margin.right)
+            .attr("height", h + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i ){return xScale(i);})
+            .attr("cy", function(d){return yScale(d.RawTemperature);})
+            .attr("r", 2);
+}
+
+    var dataset =[ ] ;
+    d3.text("berlin.txt", function(error,data){
+        data = data.replace(/  +/g, ',');
+        parsed = d3.csvParse(data);
+        parsed.forEach(function(d,i){
+            d.YEAR = +d.YEAR;
+            d.JAN = +d.JAN;
+            d.FEB = +d.FEB;
+            d.MAR = +d.MAR;
+            d.APR = +d.APR;
+            d.MAY = +d.MAY;
+            d.JUN = +d.JUN;
+            d.JUL = +d.JUL;
+            d.AUG = +d.AUG;
+            d.SEP = +d.SEP;
+            d.OCT = +d.OCT;
+            d.NOV = +d.NOV;
+            d.DEC = +d.DEC;
+            if(d !== d){
+                d = 0;
+            }
+            dataset.push([ (i*12), d.JAN]);
+            dataset.push([ (i*12) +1, d.FEB]);
+            dataset.push([ (i*12) +2, d.MAR]);
+            dataset.push([ (i*12) +3, d.APR]);
+            dataset.push([ (i*12) +4, d.MAY]);
+            dataset.push([ (i*12) +5, d.JUN]);
+            dataset.push([ (i*12) +6, d.JUL]);
+            dataset.push([ (i*12) +8-1, d.AUG]);
+            dataset.push([ (i*12) +8, d.SEP]);
+            dataset.push([ (i*12) +8+1, d.OCT]);
+            dataset.push([ (i*12) +8+2, d.NOV]);
+            dataset.push([ (i*12) +8+3, d.DEC])
+
+
+        } );
+
+        secondViz(dataset)
+        }
+
+    );
+
+
+    function secondViz(data){
+
+        var margin = {top: 100, right: 100, bottom: 100, left: 100};
+        var h = 1024 - margin.left - margin.right;
+        var w = 2048 - margin.top - margin.bottom;
+
+        var scale = d3.scaleLinear();
+
+        var xmax= data.length;
+        var xmin = 1;
+        var ymax= d3.max(data, function(d){
+
+            return d[1];});
+        var ymin = d3.min(data, function(d){
+
+            return d[1];});
+
+        var xScale = d3.scaleLinear()
+            .domain([xmin,xmax])
+            .range([0, w]);
+        var yScale = d3.scaleLinear()
+            .domain([ymin,35])
+            .range([h,0]);
+
+        svg = d3.select("body")
+            .append("svg")
+            .attr("width", w + margin.left + margin.right)
+            .attr("height", h + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d ){
+                return xScale(d[0])})
+            .attr("cy", function(d){return yScale(d[1])})
+            .attr("r", 2);
+
+        var xAxis = d3.axisBottom(xScale);   // Constructed using a scale
+
+        d3.select('svg')
+            .select('g')              // grouping not strictly necessary
+            .append("g")
+            .call(xAxis);
+
+        d3.select('svg')
+            .select('g')              // grouping not strictly necessary
+            .append("g")
+            .call(d3.axisRight(yScale));
+        console.log(data);
+        subsetViz(data)
+
+
+    }
+
+    function subsetViz(data){
+
+        subset = [];
+        for (var i = 0; i < 24; i++)
+        {
+            subset.push([ data[i][0],data[i][1]]);
+
+        }
+        console.log(subset);
+        var margin = {top: 100, right: 100, bottom: 100, left: 100};
+        var h = 1024 - margin.left - margin.right;
+        var w = 2048 - margin.top - margin.bottom;
+
+        var scale = d3.scaleLinear();
+
+        var xmax= subset.length;
+        var xmin = 1;
+        var ymax= d3.max(subset, function(d){
+
+            return d[1];});
+        var ymin = d3.min(subset, function(d){
+
+            return d[1];});
+
+        var xScale = d3.scaleLinear()
+            .domain([xmin,xmax])
+            .range([0, w]);
+        var yScale = d3.scaleLinear()
+            .domain([ymin,ymax])
+            .range([h,0]);
+
+        svg = d3.select("body")
+            .append("svg")
+            .attr("width", w + margin.left + margin.right)
+            .attr("height", h + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .selectAll("circle")
+            .data(subset)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d ){
+                return xScale(d[0])})
+            .attr("cy", function(d){return yScale(d[1])})
+            .attr("r", 2);
+
+        var xAxis = d3.axisBottom(xScale);   // Constructed using a scale
+
+        d3.select('svg')
+            .select('g')              // grouping not strictly necessary
+            .append("g")
+            .call(xAxis);
+
+        d3.select('svg')
+            .select('g')              // grouping not strictly necessary
+            .append("g")
+            .call(d3.axisRight(yScale));
+        console.log(data)
+
+    }
+</script>
+</body>
+</html>

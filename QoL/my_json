@@ -1,0 +1,66 @@
+{
+  "countries":[
+    {
+      "name": "Austria",
+      "years": [
+        {
+          "2007":{
+            "variables":[
+              {"population":
+                {"total":30, "M":10, "F":20}},
+              {"WHO":
+                {"total":40, "M":20, "F":20}},
+              {"Education":{"none":30, "primary":10, "LowerSecondary":20, "PostSecondary":20, "UpperSecondary":20}},
+              {"Age groups":
+                {"18to24":30, "25to34":10, "35to49":20}}
+            ]
+          }
+        },
+        {
+          "2011":{
+            "variables":[
+              {"population":
+              {"total":30, "M":10, "F":20}},
+              {"WHO":
+              {"total":30, "M":10, "F":20}},
+              {"Education":{
+                "none":30, "primary":10, "LowerSecondary":20, "PostSecondary":20, "UpperSecondary":20}},
+              {"Age groups":
+              {"18to24":30, "25to34":10, "35to49":20}}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Belgium",
+      "years": [
+        {
+          "2007":{
+            "variables":[
+              {"population": {"total":30, "M":10, "F":20}},
+              {"WHO": {"total":30, "M":10, "F":20}},
+              {"Education":{"none":30, "primary":10, "LowerSecondary":20, "PostSecondary":20, "UpperSecondary":20}},
+              {"Age groups": {"18to24":30, "25to34":10, "35to49":20}}
+            ]
+          }
+        },
+        {
+          "2011":{
+            "variables":[
+              {"population":
+              {"total":30, "M":10, "F":20}},
+              {"WHO":
+              {"total":30, "M":10, "F":20}},
+              {"Education":{
+                "none":30, "primary":10, "LowerSecondary":20, "PostSecondary":20, "UpperSecondary":20}},
+              {"Age groups":
+              {"18to24":30, "25to34":10, "35to49":20}}
+            ]
+          }
+        }
+      ]
+    }
+
+  ]
+}

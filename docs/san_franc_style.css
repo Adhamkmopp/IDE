@@ -1,0 +1,15 @@
+.vis_one{
+    background-color: floralwhite;
+    border: 1px solid black;
+    position: center;
+    width: 900px;
+    height: 800px;
+    margin: auto;
+}
+
+.c_font{
+    font-family: Lato, sans-serif;
+    font-size: 10px;
+    fill: black;
+    fill-opacity: .5;
+}

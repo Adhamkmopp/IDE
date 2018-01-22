@@ -1,0 +1,155 @@
+{
+  "name": "Donald Trump",
+  "dob": "June 14, 1946",
+  "url": "https://en.wikipedia.org/wiki/Donald_Trump",
+  "sex": "M",
+  "is_family": "root",
+  "partners": [
+    {
+      "name": "Ivana Trump",
+      "dob": "February 20, 1949",
+      "url": "https://en.wikipedia.org/wiki/Ivana_Trump",
+      "sex": "F",
+      "is_family": "wife",
+      "children": [
+        {
+          "name": "Donald Trump Jr.",
+          "dob": "December 31, 1977",
+          "url": "https://en.wikipedia.org/wiki/Donald_Trump_Jr.",
+          "sex": "M",
+          "is_family": "child",
+          "partners": [
+            {
+              "name": "Vanessa Trump",
+              "dob": "December 18, 1977",
+              "url": "",
+              "sex": "F",
+              "children": [
+                {
+                  "name": "Kai Madison",
+                  "dob": "May 12, 2007",
+                  "url": "",
+                  "sex": "F"
+                },
+                {
+                  "name": "Donald III",
+                  "dob": "February 18, 2009",
+                  "url": "",
+                  "sex": "M"
+                },
+                {
+                  "name": "Chloe Sophia",
+                  "dob": "June 16, 2014",
+                  "sex": "F",
+                  "url": ""
+                },
+                {
+                  "name": "Tristan Milos",
+                  "dob": "October 2, 2011",
+                  "sex": "M",
+                  "url": ""
+                },
+                {
+                  "name": "Spencer Frederick",
+                  "dob": "October 21, 2012 ",
+                  "sex": "M",
+                  "url": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ivanka Trump",
+          "dob": "October 30, 1981",
+          "url": "https://en.wikipedia.org/wiki/Ivanka_Trump",
+          "sex": "F",
+          "is_family": "child",
+          "partners": [
+            {
+              "name": "Jared Kushner",
+              "dob": "January 10, 1981",
+              "url": "https://en.wikipedia.org/wiki/Jared_Kushner",
+              "sex": "M",
+              "children": [
+                {
+                  "name": "Arabella Rose",
+                  "dob": "July 17, 2011",
+                  "url": "",
+                  "sex": "F"
+                },
+                {
+                  "name": "Joseph Frederick",
+                  "dob": "October 14, 2013",
+                  "url": "",
+                  "sex": "M"
+                },
+                {
+                  "name": "Theodore James",
+                  "dob": "March 27, 2016",
+                  "url": "",
+                  "sex": "M"
+                }
+              ]
+            }
+          ]
+        },          
+        {
+          "name": "Eric Trump",
+          "dob": "January 6, 1984",
+          "url": "https://en.wikipedia.org/wiki/Eric_Trump",
+          "sex": "M",
+          "is_family": "child",
+          "partners": [
+            {
+              "name": "Lara Yunaska",
+              "dob": "October 12, 1982",
+              "url": "https://en.wikipedia.org/wiki/Lara_Trump",
+              "sex": "F",
+              "children":[
+                {
+                  "name": "Eric Luke Trump",
+                  "dob": "not born yet",
+                  "sex": "M"
+
+                }
+              ]
+            }
+          ]
+        }          
+      ]
+    },
+    {
+      "name": "Marla Maples",
+      "dob": "October 27, 1963",
+      "url": "https://en.wikipedia.org/wiki/Marla_Maples",
+      "sex": "F",
+      "is_family": "wife",
+      "children": [
+        {
+          "name": "Tiffany Trump",
+          "dob": "October 13, 1993",
+          "url": "https://en.wikipedia.org/wiki/Tiffany_Trump",
+          "sex": "F",
+          "is_family": "child"
+        }
+      ]
+    },
+    {
+      "name": "Melania Trump",
+      "dob": "April 26, 1970",
+      "url": "https://en.wikipedia.org/wiki/Melania_Trump",
+      "sex": "F",
+      "is_family": "wife",
+      "children": [
+        {
+          "name": "Barron Trump",
+          "dob": "March 20, 2006",
+          "url": "https://en.wikipedia.org/wiki/Family_of_Donald_Trump#Barron_Trump",
+          "sex": "M",
+          "is_family": "child"
+        }
+      ]
+    }    
+  ]
+}
