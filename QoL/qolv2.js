@@ -146,10 +146,12 @@ function init() {
         });
         /* setting up the svg and tooltip */
         var svg = d3.select("#pie_container");
-        var margin = {top: 20, right: 50, bottom: 20, left: 50};
-        var width = +svg.node().getBoundingClientRect().width - margin.left - margin.right;
-        var height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+        var width = +svg.node().getBoundingClientRect().width
+        var height = +svg.node().getBoundingClientRect().height
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
+height = height - margin.top - margin.bottom;
+width = width- margin.left - margin.right;
 
         svg.append("text")
             .attr("dy", ".0em")
@@ -163,20 +165,20 @@ function init() {
             .attr("class", "tooltip")
             .style("opacity", 0.9);
         keys.forEach(function (year,i) {
-            pie_outer_radius= 45;
-            pie_inner_radius= 25;
+            pie_outer_radius= 35;
+            pie_inner_radius= 15;
 
             arc = d3.arc()
                 .outerRadius(pie_outer_radius)
                 .innerRadius(pie_inner_radius);
 
             labelArc = d3.arc()
-                .outerRadius(pie_outer_radius +40)
-                .innerRadius(pie_inner_radius +40);
+                .outerRadius(pie_outer_radius +30)
+                .innerRadius(pie_inner_radius +30);
 
             lineArc = d3.arc()
-                .outerRadius(pie_outer_radius+25)
-                .innerRadius(pie_inner_radius+25);
+                .outerRadius(pie_outer_radius+15)
+                .innerRadius(pie_inner_radius+15);
 
             //outerArc = d3.arc() 
             //  .innerRadius(pie_outer_radius) 
@@ -210,13 +212,13 @@ function init() {
                     .attr("id", "" + variablename + year+ "donut")
                     .attr("transform", function () {
                         if (j == 1 && year == 2007) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (( (height-pie_outer_radius) / 6)+30) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ( ((height-pie_outer_radius) / 6)+30) + ")"
                         } else if (year==2007){
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height-pie_outer_radius) / 4)+100) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 4)+100) + ")"
                         } else if (j == 1 && year == 2011) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height-pie_outer_radius) / 2)+100) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 2)+100) + ")"
                         } else {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ((height-pie_outer_radius) -80) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ((height)) + ")"
                         }
                     })
                     .selectAll("arc")
@@ -508,11 +510,13 @@ function init() {
         // var neighbors = topojson.neighbors(map_data.objects.countries.geometries); 
         var names = map_data.objects.countries.geometries;
 
-        var svg = d3.select('#europe_container'),
-            margin = {top: 50, right: 50, bottom: 50, left: 100};
-        var width = +svg.node().getBoundingClientRect().width - margin.left - margin.right;
-        var height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+        var svg = d3.select('#europe_container')
+        var width = +svg.node().getBoundingClientRect().width
+        var height = +svg.node().getBoundingClientRect().height
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
+        height = height - margin.top - margin.bottom;
+        width = width- margin.left - margin.right;
         var g = svg.append("g")
             .attr("class", "map")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -691,9 +695,12 @@ function init() {
             return d3.descending(a.Social_exclusion2011, b.Social_exclusion2011); });
 
         var svg = d3.select("#social_exclusion");
-        var margin = {top: 80, right: 50, bottom: 150, left: 100};
-        var width = +svg.node().getBoundingClientRect().width - margin.left - margin.right;
-        var height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+        var width = +svg.node().getBoundingClientRect().width
+        var height = +svg.node().getBoundingClientRect().height
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
+
+        height = height - margin.top - margin.bottom;
+        width = width- margin.left - margin.right;
 
         var x = d3.scaleLinear().
             rangeRound([0, width]),
@@ -766,7 +773,7 @@ function init() {
         g.append("text")
             .attr("id", "title_text")
             .style("font-family", "Lato, sans-serif")
-            .attr("y", -30)
+            .attr("y", margin.top)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
             .attr("font-size", "1.0vw")
@@ -823,9 +830,12 @@ checker(g)
             return d3.descending(a.Social_exclusion2007, b.Social_exclusion2007); });
 
         var svg = d3.select("#social_deprivation");
-        var margin = {top: 80, right: 50, bottom: 150, left: 100};
-        var width = +svg.node().getBoundingClientRect().width - margin.left - margin.right;
-        var height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+        var width = +svg.node().getBoundingClientRect().width
+        var height = +svg.node().getBoundingClientRect().height
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
+
+        height = height - margin.top - margin.bottom;
+        width = width- margin.left - margin.right;
 
         var x = d3.scaleLinear().
             rangeRound([0, width]),
@@ -894,7 +904,7 @@ checker(g)
         g.append("text")
             .attr("id", "title_text")
             .style("font-family", "Lato, sans-serif")
-            .attr("y", -30)
+            .attr("y", margin.top)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
             .attr("font-size", "1.0vw")
@@ -962,9 +972,12 @@ checker(g)
             return d3.descending(a["Social_exclusion"+year], b["Social_exclusion"+year]); });
 
         var svg = d3.select("#social_deprivation");
-        var margin = {top: 80, right: 50, bottom: 150, left: 100};
-        var width = +svg.node().getBoundingClientRect().width - margin.left - margin.right;
-        var height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+        var width = +svg.node().getBoundingClientRect().width
+        var height = +svg.node().getBoundingClientRect().height
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
+
+        height = height - margin.top - margin.bottom;
+        width = width- margin.left - margin.right;
 
         var x = d3.scaleLinear().rangeRound([0, width]),
             y = d3.scaleLinear().rangeRound([height, 0]);
@@ -989,7 +1002,7 @@ checker(g)
         // add title to plot 
         g.select("#title_text")
             .style("font-family", "Lato, sans-serif")
-            .attr("y", -30)
+            .attr("y", margin.top)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
             .text("Social Exclusion correlated to Social Deprivation - year "  +year);
@@ -1052,10 +1065,13 @@ checker(g)
     function draw_who_gender_points(dataset){
 
 
-        var svg = d3.select("#WHO_points_gender"),
-            margin = {top: 80, right: 50, bottom: 150, left: 100},
-            width = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
-            height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+        var svg = d3.select("#WHO_points_gender")
+        var width = +svg.node().getBoundingClientRect().width
+        var height = +svg.node().getBoundingClientRect().height
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
+
+        height = height - margin.top - margin.bottom;
+        width = width- margin.left - margin.right;
 
         console.log(width)
         console.log(width)
@@ -1134,7 +1150,7 @@ keys.forEach(function (t,i) {
             .attr("text-anchor", "middle");
 
         g.append("text")
-            .attr("y", margin.bottom+400)
+            .attr("y", height +margin.bottom+margin.top+margin.bottom)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
@@ -1158,7 +1174,7 @@ keys.forEach(function (t,i) {
         g.append("text")
             .attr("id", "title")
             .style("font-family", "Lato, sans-serif")
-            .attr("y", -30)
+            .attr("y", margin.top)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
             .text("WHO Mental Well-Being Index by Gender, Year: 2007");
@@ -1222,10 +1238,13 @@ keys.forEach(function (t,i) {
             // WHO = [t.MaleWHO2007,t.FemaleWHO2007]}
         })
 
-        var svg = d3.select("#WHO_points_gender"),
-            margin = {top: 80, right: 50, bottom: 150, left: 100},
-            width = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
-            height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+        var svg = d3.select("#WHO_points_gender")
+        var width = +svg.node().getBoundingClientRect().width
+        var height = +svg.node().getBoundingClientRect().height
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
+
+        height = height - margin.top - margin.bottom;
+        width = width- margin.left - margin.right;
 
         var g = svg.select("#WHOgender");
 
@@ -1295,10 +1314,13 @@ keys.forEach(function (t,i) {
 
     function draw_who_age_points(dataset){
 
-        var svg = d3.select("#WHO_points_age"),
-            margin = {top: 80, right: 50, bottom: 150, left: 100},
-            width = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
-            height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+        var svg = d3.select("#WHO_points_age")
+        var width = +svg.node().getBoundingClientRect().width
+        var height = +svg.node().getBoundingClientRect().height
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
+
+        height = height - margin.top - margin.bottom;
+        width = width- margin.left - margin.right;
 
         var g = svg.append("g")
             .attr("id", "WHOage")
@@ -1423,7 +1445,7 @@ keys.forEach(function (group,i) {
             .attr("text-anchor", "middle");
 
         g.append("text")
-            .attr("y", margin.bottom+400)
+            .attr("y", height +margin.bottom+margin.top+margin.bottom)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
@@ -1447,7 +1469,7 @@ keys.forEach(function (group,i) {
         g.append("text")
             .attr("id", "title")
             .style("font-family", "Lato, sans-serif")
-            .attr("y", -30)
+            .attr("y", margin.top)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
             .text("Mental Well-Being Index by Age Group, Year: 2007");
@@ -1498,10 +1520,13 @@ keys.forEach(function (group,i) {
     }
 
     function update_WHO_age (dataset, year){
-        var svg = d3.select("#WHO_points_age"),
-            margin = {top: 80, right: 50, bottom: 150, left: 100},
-            width = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
-            height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+        var svg = d3.select("#WHO_points_age")
+        var width = +svg.node().getBoundingClientRect().width
+        var height = +svg.node().getBoundingClientRect().height
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
+
+        height = height - margin.top - margin.bottom;
+        width = width- margin.left - margin.right;
 
         var g = svg.select("#WHOage");
 
