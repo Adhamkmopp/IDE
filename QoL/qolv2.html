@@ -16,31 +16,40 @@
 
 </head>
 <body>
-<img src="copertina5.jpg" id="front_img">
+<img src="copertina7.jpg" id="front_img">
 
 <div class="arrow_down" style="padding: 5px 5px 5px 5px"></div>
 
 <div id="div_intro">
-    <h2>Display Typles</h2>
-
+    <h2>Introduction</h2>
     <p>
-        As the name suggests, the aim of the survey was to track the quality of life of Europeans
-        through a questionnaire of 195 points that addresses a large range of issues “...
-        such as employment, income, education, housing, family, health and work-life balance. It also look[ed]
-        at subjective topics, such as people's levels of happiness, how satisfied they are with their lives,
-        and how they perceive the quality of their societies...”.
-        For our purposes, out the 195 variables, we have selected the 'World Health Organization (WHO) Mental Well-being Index', and
-        'Social Exclusion' as the two main variables to visualize and explain. Our choice was motivated by personal
-        interest in those two variables firstly as major indicators of QoL on a personal and societal level respectively,
-        their multifaceted nature, and more pragmatically, due to their nature of being a "Derived Variable" of
-        several other variables.
-
+        This report analyses data obtained from the European Quality of Life Survey (EQoLS),
+        a pan-European survey on the quality of life of European citizens.
+        The survey is conducted every 4 years by the European Foundation for the Improvement of Living and
+        Working Conditions (Eurofound).
     </p>
     <p>
-        However, a number of responses in the questionnaire may be grouped together as ‘derived variables’
-        and this report specifically seeks to examine the relationships and degress of stratification by age and
-        gender of two such major variables; general wellbeing (as given by the World Health Organization (WHO)
-        mental well-being index), and social integration (given by degrees of ‘social exclusion’).
+        The aim of the survey is to track the quality of life of Europeans through a questionnaire of 195 points.
+        It addresses a large range of issues such as "employment, income, education, housing, family, health and work-life balance.
+        It also investigate subjective topics, such as people's levels of happiness, how satisfied they are with their lives,
+        and how they perceive the quality of their societies".
+    </p>
+
+    <p>
+        For the purposes of the following visualisations we selected 2 variables out the 195 total variables describing the survey
+        and two waves (2007 and 2011) for which the extended data set was available.
+        The selection has fallen on 'World Health Organization (WHO) Mental Well-being Index' and
+        'Social Exclusion'.
+        Our choice was motivated by personal interest in those two variables.
+        Firstly as major indicators of QoL on a personal and societal level respectively, secondly
+        because of their multifaceted nature, and more pragmatically, due to their nature of being a
+        "Derived Variable" of several other variables.
+    </p>
+
+    <p>
+        A number of responses in the questionnaire may be grouped together as ‘derived variables’.
+        This report specifically seeks to examine the relationships and degress of stratification by age and
+        gender of the two chosen variables.
     </p>
 </div>
 
@@ -50,10 +59,16 @@
     <div class="text_container">
         <h2>Map & Donuts</h2>
         <p>
-            The map below shows the relative levels of the WHO Mental-Wellbeing and Social Exclusion split by
-            year the survey
-            was taken in. The donuts give a summary in percentages of the composition of the sample sets for
-            each selected country in terms of education level, gender and age group
+            The map below shows the relative levels of the WHO Mental-Wellbeing index and Social Exclusion split by
+            the years the survey was taken in.
+            <br>
+            The pie charts on the left give a summary, in percentages, of the composition of the sample sets for
+            each of the selected country in terms of education levels, gender and age groups.
+            <br>
+            In each country, random samples of 1000 to 3000 people were selected and provided with the survey.
+            <br>
+            Selecting a country in the maps updates the statistics of that country in the box on the left
+            while hovering over an pie slice shows the percentage of that grouping.
         </p>
     </div>
 </div>
@@ -103,15 +118,17 @@
 <div class="text_container">
     <h2>Social Exclusion & Integration</h2>
     <p>
-        <br>
         Social Exclusion is a derived indicator of the quality of life of an individual from a societal perspective.
-        It is described as having four dimesions; social vulnerability (how risk prone or averse an individual is
+        It is described as having four dimensions: social vulnerability (how risk prone or averse an individual is
         in everyday life), perceived level of social mobility,
-        sense of agency and lastly, pure economic prospects. It ranges from 1 to 5, with 1 indicating total social integration,
+        sense of agency and lastly, economic prospects.
+        It ranges from 1 to 5, with 1 indicating total social integration,
         and 5 extreme social exclusion
         <br>
-        This can be surmised in and of itself by examining the four aggreagted variables used to derive social exclusion
+        This can be surmised by examining the four aggregated variables used to derive social exclusion
         which include:
+    </p>
+
     <ol>
         <li>‘I feel left out of society.’
         <li>‘Life has become so complicated today that I almost can’t find my way.’
@@ -126,19 +143,12 @@
 <div class="soc_excl_barplots">
     <div class="text_points">
         <p>
-            The plot on the right (for 2011 only as no data was collected for 2007)
-            shows the average social exclusion on the histrogram bars, and the average of
-            social contact (degree of direct, face-to-face contact between close family and friends, scaled to overlap
-            with the histogram) on the points.
-
-            <br>
-
-            The plot shows that while Nordic countries rank among the highest in social integration, social contact
-            is comparatively lower, or as low other countries with lower social integration, indicating that
-            social contact is perhaps not a strong enough of an influence over social integration.
+            The histogram on the right shows the average values for social exclusion and social contact for each country.
+            The social contact variable is defined as degree of direct and face-to-face contact,
+            between close family and friends.
         </p>
     </div>
-    <svg id="social_exclusion" width="80vw" height="80vh" viewBox="0 0 880 680" preserveAspectRatio="xMinYMin"></svg>
+    <svg id="social_exclusion" width="70vw" height="70vh" viewBox="0 0 880 680" preserveAspectRatio="xMinYMin"></svg>
 </div>
 
 <div class="arrow_down" style="padding: 5px 5px 5px 5px"></div>
@@ -146,20 +156,13 @@
 <div class="soc_depr_barplots">
     <div class="text_points">
         <p>
-            The plot shows the average of social exclusion on the histogram bars, and the average of deprivation (Defined as
-            the number of household items that one cannot afford) on the points.
-            <br>
-
-            Unlike the previous plot, data for both 2007 and 2011 is available, and clicking on the right and left
-            arrows cycles through them. In both years, it is clear that the economic aspect of social exclusion
-            carries a strong influence, as countries with higher social integration have lower rates of deprivation and
-            vica versa.
-
+            The histogram shows the average values of social exclusion and social deprivation.
+            Social deprivation is defined as the number of household items that an individual cannot afford.
         </p>
     </div>
 
     <div class="arrow left" ></div>
-    <svg id="social_deprivation" width="80vw" height="80vh" viewBox="0 0 880 680" preserveAspectRatio="xMinYMin"></svg>
+    <svg id="social_deprivation" width="70vw" height="70vh" viewBox="0 0 880 680" preserveAspectRatio="xMinYMin"></svg>
     <div class="arrow right"></div>
 
 
@@ -170,11 +173,13 @@
 <div class="text_container">
     <h2>WHO Mental Well-being</h2>
     <p>
-        The WHO Mental Well-being index gives a general measure of the pyschological wellbeing of an individual.
-        On the one hand, it is used as an indicator of depression with a value below 50 pointing to a possible case
-        of mild depression, and on the other hand, it can used to asses the level of psychological wellbeing of a
-        population. Like social exclusion, it is a derived variable based on the following five questions and the
-        level to which the respondants agree:
+        The WHO mental well-being index gives a general measure of the psychological well-being of an individual.
+        It is used as an indicator of depression with a value below 50 pointing to a possible case
+        of mild depression. However, it can also be used to asses the level of psychological well-being within a
+        population.
+        <br>
+        It is a derived variable based on the following five questions and the level to which the respondents agree:
+    </p>
     <ol>
         <li>‘I have felt cheerful and in good spirits’
         <li>‘I have felt calm and relaxed’
@@ -193,10 +198,8 @@
     <div class="arrow right"></div>
     <div class="text_points">
         <p>
-            On the plot to the left, WHO Mental Well-being was split by gender to explore differences between
-            males and females in 2007 and 2011. While gaps may have widened and shortened over the years, with
-            some countries rising and falling slightly in the ranks, it is clear in both cases that females
-            have generally higher levels of mental well being across most European countries.
+            The plot on the left shows the WHO mental well-being index split by gender to explore differences between
+            males and females in 2007 and 2011.
         </p>
     </div>
 </div>
@@ -213,19 +216,8 @@
 
     <div class="text_points">
         <p>
-            The plot on the right similar to the one above splits WHO Mental Well-Being by age to explore
-            differences between age groups. Although no obvious conslusions can be drawn on changes across the years,
-            it is atleast clear that large differences in mental wellbeing exist across age groups. For example,
-            the four countries with the highest overall wellbeing also share the largest gaps in wellbeing between
-            its older segments and its younger segments of the population, with the oldest age groups scoring much higher
-            than their younger counterparts.
-
-            <br>
-            <br>
-            NOTE: We are aware that some values are calculated as being over 100, but we are convinced it is
-            an issue with the weighting scale provided with the data, not with the calculation itself.
-
-        </p>
+        The plot on the right shows the WHO mental well-being split by age to explore differences between age groups.
+    </p>
     </div>
 </div>
 
@@ -235,74 +227,74 @@
 
 <div class="arrow_up"  style="padding: 5px 5px 5px 5px"></div>
 
-   <div id="div_conclusion" class="text_container">
-            <h2>Conclusions</h2>
-            <p>
-                The plot visualizing the correlation between social contact and social exclusion shows that while Nordic countries
-                rank among the highest in social integration, social contact is comparatively lower than other countries with lower
-                social exclusion. This indicates that social contact is perhaps not a strong enough of an influence over social integration.
-            </p>
-            <p>
-                Unlike the previous plot, data for both 2007 and 2011 is available, and clicking on the right and left
-                arrows cycles through them. In both years, it is clear that the economic aspect of social exclusion
-                carries a strong influence, as countries with higher social integration have lower rates of deprivation and
-                vica versa.
-            </p>
+<div id="div_conclusion" class="text_container">
+    <h2>Conclusions</h2>
+    <p>
+        The plot visualizing the correlation between social contact and social exclusion shows that while Nordic countries
+        rank among the highest in social integration, social contact is comparatively lower than other countries with lower
+        social exclusion. This indicates that social contact is perhaps not a strong enough of an influence over social integration.
+    </p>
+    <p>
+        Unlike the previous plot, data for both 2007 and 2011 is available, and clicking on the right and left
+        arrows cycles through them. In both years, it is clear that the economic aspect of social exclusion
+        carries a strong influence, as countries with higher social integration have lower rates of deprivation and
+        vica versa.
+    </p>
 
-            <p>
-                The WHO mental well-being plot, split by gender, shows that gaps might have widened and shortened over the years, with
-                some countries rising and falling slightly in the ranks. Nonetheless, it is clear in both cases that females
-                have generally higher levels of mental well being across most European countries.
-            </p>
-            <p>
-                Although no obvious conclusions can be drawn on changes across the years,
-                it is at least clear that large differences in mental well-being exist across age groups.
-                For example, the four countries with the highest overall well-being also share the largest gaps in well-being between
-                their older group and their younger group of the population.
-                For most of the countries the "64+" age group scores much higher than their younger counterparts.
-            </p>
-        </div>
+    <p>
+        The WHO mental well-being plot, split by gender, shows that gaps might have widened and shortened over the years, with
+        some countries rising and falling slightly in the ranks. Nonetheless, it is clear in both cases that females
+        have generally higher levels of mental well being across most European countries.
+    </p>
+    <p>
+        Although no obvious conclusions can be drawn on changes across the years,
+        it is at least clear that large differences in mental well-being exist across age groups.
+        For example, the four countries with the highest overall well-being also share the largest gaps in well-being between
+        their older group and their younger group of the population.
+        For most of the countries the "64+" age group scores much higher than their younger counterparts.
+    </p>
+</div>
 
-        <div id="div_remarks">
-            <h2>Remarks</h2>
-            <p>
-                The data was take from the <a href="https://www.ukdataservice.ac.uk/">UK Data Service database</a>
-                and it has been preprocessed using this <a href="QoL.R">script</a>.
-            </p>
-            <p>
-                Compared to the official report about this survey by the Eurofund, which can be found
-                <a href="https://www.eurofound.europa.eu/sites/default/files/ef_publication/field_ef_document/ef0988en.pdf">here</a>,
-                the above visualisation of the WHO mental well-being index split by gender shows the opposite pattern.
-                In fact the organization reports higher levels of mental well-being among males over females.
-            </p>
-            <p>
-                Some values in the plot of the WHO mental well-being index, split by age groups,
-                are calculated as being over 100. This issue is due to a miscalculation of the weighting scale provided with the data.
-            </p>
-        </div>
+<div id="div_remarks">
+    <h2>Remarks</h2>
+    <p>
+        The data was take from the <a href="https://www.ukdataservice.ac.uk/">UK Data Service database</a>
+        and it has been preprocessed using this <a href="QoL.R">script</a>.
+    </p>
+    <p>
+        Compared to the official report about this survey by the Eurofund, which can be found
+        <a href="https://www.eurofound.europa.eu/sites/default/files/ef_publication/field_ef_document/ef0988en.pdf">here</a>,
+        the above visualisation of the WHO mental well-being index split by gender shows the opposite pattern.
+        In fact the organization reports higher levels of mental well-being among males over females.
+    </p>
+    <p>
+        Some values in the plot of the WHO mental well-being index, split by age groups,
+        are calculated as being over 100. This issue is due to a miscalculation of the weighting scale provided with the data.
+    </p>
+</div>
 
-        <div class="bottom_bar">
-            <p>
-                This report was made with <img src="cat_love.jpg" width=20px height=20px> by Adham & Carlotta
-            </p>
-        </div>
-    </body>
+<div class="bottom_bar">
+    <p>
+        This report was made with <img src="cat_love.jpg" width=20px height=20px> by Adham & Carlotta
+    </p>
+</div>
+</body>
 
-    <script>
-        $(document).ready(function() {
-            $('.arrow_down').click(function(e){
-                e.preventDefault();
+<script>
+    $(document).ready(function() {
+        $('.arrow_down').click(function(e){
+            e.preventDefault();
 
-                $('html,body').animate({scrollTop:$(this).offset().top}, 500,'swing');
-            });
-
-            $('.arrow_up').click(function(e){
-                e.preventDefault();
-
-                $('html,body').animate({scrollTop:$('#map_div').offset().top}, 900,'swing');
-            });
-
+            $('html,body').animate({scrollTop:$(this).offset().top}, 500,'swing');
         });
-    </script>
+
+        $('.arrow_up').click(function(e){
+            e.preventDefault();
+
+            $('html,body').animate({scrollTop:$('#map_div').offset().top}, 900,'swing');
+        });
+
+    });
+</script>
 
 </html>
