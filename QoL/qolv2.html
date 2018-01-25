@@ -235,31 +235,74 @@
 
 <div class="arrow_up"  style="padding: 5px 5px 5px 5px"></div>
 
-<div id="div_conclusion" class="text_container">
-    <h2>Conclusions</h2>
-    <p>
+   <div id="div_conclusion" class="text_container">
+            <h2>Conclusions</h2>
+            <p>
+                The plot visualizing the correlation between social contact and social exclusion shows that while Nordic countries
+                rank among the highest in social integration, social contact is comparatively lower than other countries with lower
+                social exclusion. This indicates that social contact is perhaps not a strong enough of an influence over social integration.
+            </p>
+            <p>
+                Unlike the previous plot, data for both 2007 and 2011 is available, and clicking on the right and left
+                arrows cycles through them. In both years, it is clear that the economic aspect of social exclusion
+                carries a strong influence, as countries with higher social integration have lower rates of deprivation and
+                vica versa.
+            </p>
 
-    </p>
-</div>
+            <p>
+                The WHO mental well-being plot, split by gender, shows that gaps might have widened and shortened over the years, with
+                some countries rising and falling slightly in the ranks. Nonetheless, it is clear in both cases that females
+                have generally higher levels of mental well being across most European countries.
+            </p>
+            <p>
+                Although no obvious conclusions can be drawn on changes across the years,
+                it is at least clear that large differences in mental well-being exist across age groups.
+                For example, the four countries with the highest overall well-being also share the largest gaps in well-being between
+                their older group and their younger group of the population.
+                For most of the countries the "64+" age group scores much higher than their younger counterparts.
+            </p>
+        </div>
 
+        <div id="div_remarks">
+            <h2>Remarks</h2>
+            <p>
+                The data was take from the <a href="https://www.ukdataservice.ac.uk/">UK Data Service database</a>
+                and it has been preprocessed using this <a href="QoL.R">script</a>.
+            </p>
+            <p>
+                Compared to the official report about this survey by the Eurofund, which can be found
+                <a href="https://www.eurofound.europa.eu/sites/default/files/ef_publication/field_ef_document/ef0988en.pdf">here</a>,
+                the above visualisation of the WHO mental well-being index split by gender shows the opposite pattern.
+                In fact the organization reports higher levels of mental well-being among males over females.
+            </p>
+            <p>
+                Some values in the plot of the WHO mental well-being index, split by age groups,
+                are calculated as being over 100. This issue is due to a miscalculation of the weighting scale provided with the data.
+            </p>
+        </div>
 
-</body>
+        <div class="bottom_bar">
+            <p>
+                This report was made with <img src="cat_love.jpg" width=20px height=20px> by Adham & Carlotta
+            </p>
+        </div>
+    </body>
 
-<script>
-    $(document).ready(function() {
-        $('.arrow_down').click(function(e){
-            e.preventDefault();
+    <script>
+        $(document).ready(function() {
+            $('.arrow_down').click(function(e){
+                e.preventDefault();
 
-            $('html,body').animate({scrollTop:$(this).offset().top},900,'swing');
+                $('html,body').animate({scrollTop:$(this).offset().top}, 500,'swing');
+            });
+
+            $('.arrow_up').click(function(e){
+                e.preventDefault();
+
+                $('html,body').animate({scrollTop:$('#map_div').offset().top}, 900,'swing');
+            });
+
         });
-
-        $('.arrow_up').click(function(e){
-            e.preventDefault();
-
-            $('html,body').animate({scrollTop:$('#map_div').offset().top},900,'swing');
-        });
-
-    });
-</script>
+    </script>
 
 </html>
