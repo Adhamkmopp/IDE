@@ -88,6 +88,29 @@ function init() {
         //"SocialExclusion2011":["total"] 
     };
 
+    function checker(overlaps){
+        for(i=0;i<10;i++)
+            overlaps.selectAll(".countryLabels")
+                .each(function () {
+                    var that = this,
+                        a= this.getBoundingClientRect()
+                    overlaps.selectAll(".countryLabels")
+                        .each ( function () {
+                            if (this != that){
+                                b= this.getBoundingClientRect()
+                                if (Math.abs(a.y - b.y) <= 10 & Math.abs(a.x - b.x) <= 20){
+                                    d3.select(that).attr("dx", (Math.random()*(-i)))
+                                    d3.select(this).attr("dx", (Math.random()*(i)))
+
+                                    d3.select(this).attr("dy", (Math.random()*(i)))
+                                    d3.select(that).attr("dy", (Math.random()*(-i)))
+
+                                }
+                            }
+                        })
+                } )
+    }
+
     function arcTween(a) {
         /** This function will be used to keep track of the current angle, and return a new arc
          interpolation. Placed here to allow global access to draw_donuts and change_country functions
@@ -672,8 +695,10 @@ function init() {
         var width = +svg.node().getBoundingClientRect().width - margin.left - margin.right;
         var height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
 
-        var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-            y = d3.scaleLinear().rangeRound([height, 0]);
+        var x = d3.scaleLinear().
+            rangeRound([0, width]),
+            y = d3.scaleLinear()
+                .rangeRound([height, 0]);
 
         var g = svg.append("g")
             .attr("id" , "soc_exc")
@@ -682,102 +707,113 @@ function init() {
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-        x.domain(dataset.map(function(d) { return d.Countries; }));
-        y.domain([0, d3.max(dataset, function(d) { return +d.Social_exclusion2011 > d.Social_contact2011/4.0
-            ? +d.Social_exclusion2011:d.Social_contact2011/4; })]);
+
+
+        x.domain([1.4,d3.max(dataset.map(function(d) {
+            return d.Social_exclusion2011; }))]);
+        y.domain([10,d3.max(dataset.map(function(d) {
+            return d.Social_contact2011; }))])
+
 
         g.append("g")
-            .attr("class", "axis")
+            .attr("class", "x-axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x))
+            .call(d3.axisBottom(x).ticks(25))
             .selectAll(".tick")
             .select("text")
-            .attr("transform", "translate("+ -12.0+ "," +43.0+") " +"rotate(-90)")
+            .attr("transform", "translate(0," + 10 + ")")
+
             .attr("text-anchor", "middle");
 
-        // add text to the X axis 
         g.append("g")
+            .attr("class", "y-axis")
+            .call(d3.axisLeft(y))
+            .selectAll(".tick")
+            .select("text")
+            .attr("transform", "translate(-10," + 0 + ")")
+            .attr("text-anchor", "middle");
+
+
+        // add text to the X axis
+        g.append("g")
+            .attr("class", "xlab")
+            .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", margin.bottom+420)
+            .attr("y", margin.bottom-70)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
-            .text("Countries");
+            .attr("font-size", "1vw")
+            .text("Social Exclusion");
 
-        // add text to the Y axis 
+
+        // add text to the Y axis
         g.append("g")
-            .attr("class", "axis axis--y")
-            .call(d3.axisLeft(y).ticks(15))
+            .attr("class", "ylab")
+            .attr("transform", "translate(0," + height/2 + ")")
             .append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", 0 - margin.left+50)
-            .attr("x", 0 - (height / 2))
+            .attr("y",  - margin.right)
+            .attr("x", 0)
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
-            .text("Social exclusion values");
+            .attr("font-size", "1vw")
+            .text("Social Contact");
 
-        // add title to plot 
+
+
+        // add title to plot
         g.append("text")
+            .attr("id", "title_text")
             .style("font-family", "Lato, sans-serif")
             .attr("y", -30)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
-            .text("Social Exclusion correlated to Social contact - year 2007");
+            .attr("font-size", "1.0vw")
+            .text("Social Exclusion Correlated to Social Contact - Year 2007");
 
 
-        g.selectAll(".bar")
-            .data(dataset)
-            .enter()
-            .append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return x(d.Countries); })
-            .attr("y", function(d) { return y(+d.Social_exclusion2011); })
-            .attr("width", x.bandwidth())
-            .attr("height", function(d) { return height - y(+d.Social_exclusion2011); })
-            .attr("opacity", 0.8);
-
-        g.selectAll(".point")
-            .data(dataset)
+        g.append("g")
+            .attr("class", "points")
+            .selectAll(".points")
+            .data(dataset, function (d) {
+                return d.Countries
+            })
             .enter()
             .append("circle")
             .attr("fill", "steelblue")
-            .attr("transform", "translate("+12.0+"," + 0 + ")")
             .attr("r", 3.5)
-            .attr("cx", function(d) { return x(d.Countries); })
-            .attr("cy", function(d) { return y(+d.Social_contact2011/4.0); });
+            .attr("cx", function(d) { return x(d.Social_exclusion2011); })
+            .attr("cy", function(d) { return y(+d.Social_contact2011); });
 
 
-        legend = svg.append("g")
-            .attr("class", "legend" );
-
-        legend.append('rect')
-            .attr("x", width - margin.left - 5)
-            .attr("y", margin.top - 7)
-            .attr("width", 160)
-            .attr("height", 20)
-            .attr("fill", "white")
-            .attr("background-color", "none");
-
-        legend.append('rect')
-            .attr("x", width - margin.left)
-            .attr("y", margin.top)
-            .attr("width", 10)
-            .attr("height", 10)
-            .attr("fill",  "steelblue");
-
-        legend.append("text")
-            .attr("x", width - margin.left + 20)
-            .attr("y", margin.top + 10)
-            .text("Social Contact");
-
-        var box =[];
-        lay = d3.select(".legend")
+        g.select(".points")
             .selectAll("text")
-            .each(function (d) {
-                box.push(this.getBBox())
+            .data(dataset, function (d) {
+                return d.Countries
             })
+            .enter()
+            .append("text")
+            .attr("class", "countryLabels")
+            .text(function (d) {
+                return d.Countries
+            }).attr("x", function(d) { return x(d.Social_exclusion2011); })
+            .attr("y", function(d) { return y(+d.Social_contact2011); })
+            .attr("opacity", 0.5)
+
+            .on("mouseover", function () {
+                d3.select(this)
+                    .classed("highlighted", true)
+            })
+            .on("mouseout", function () {
+                d3.select(this)
+                    .classed("highlighted", false)
 
 
+            });
+
+
+checker(g)
 
     }
 
@@ -791,8 +827,10 @@ function init() {
         var width = +svg.node().getBoundingClientRect().width - margin.left - margin.right;
         var height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
 
-        var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-            y = d3.scaleLinear().rangeRound([height, 0]);
+        var x = d3.scaleLinear().
+            rangeRound([0, width]),
+            y = d3.scaleLinear()
+                .rangeRound([height, 0]);
 
         var g = svg.append("g")
             .attr("id" , "soc_dep")
@@ -801,40 +839,55 @@ function init() {
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-        x.domain(dataset_depr.map(function(d) { return d.Countries; }));
-        y.domain([0, 3.8]);
+        x.domain([1.4,d3.max(dataset_depr.map(function(d) {
+            return d.Social_exclusion2007; }))]);
+        y.domain(d3.extent(dataset_depr.map(function(d) {
+            return d.Deprivation2007; })));
 
         g.append("g")
             .attr("class", "x-axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x))
+            .call(d3.axisBottom(x).ticks(25))
             .selectAll(".tick")
             .select("text")
-            .attr("transform", "translate("+ -12.0+ "," +43.0+") " +"rotate(-90)")
+            .attr("transform", "translate(0," + 10 + ")")
+
             .attr("text-anchor", "middle");
+
+        g.append("g")
+            .attr("class", "y-axis")
+            .call(d3.axisLeft(y))
+            .selectAll(".tick")
+            .select("text")
+            .attr("transform", "translate(-10," + 0 + ")")
+            .attr("text-anchor", "middle");
+
 
         // add text to the X axis 
         g.append("g")
-            .attr("class", "axis axis--x")
+            .attr("class", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", margin.bottom-30)
+            .attr("y", margin.bottom-70)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
-            .text("Countries");
+            .attr("font-size", "1vw")
+            .text("Social Exclusion");
+
 
         // add text to the Y axis 
         g.append("g")
-            .attr("class", "axis axis--y")
-            .call(d3.axisLeft(y).ticks(15))
+            .attr("class", "ylab")
+            .attr("transform", "translate(0," + height/2 + ")")
             .append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", 0 - margin.left+50)
-            .attr("x", 0 - (height / 2))
+            .attr("y",  - margin.right)
+            .attr("x", 0)
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
-            .text("Social exclusion values");
+            .attr("font-size", "1vw")
+            .text("Social Deprivation");
 
 
         // add title to plot 
@@ -844,28 +897,49 @@ function init() {
             .attr("y", -30)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
-            .text("Social Exclusion correlated to Social Deprivation - year 2007");
+            .attr("font-size", "1.0vw")
+            .text("Social Exclusion Correlated to Social Deprivation - year 2007");
 
-        g.selectAll(".bar")
-            .data(dataset)
-            .enter()
-            .append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return x(d.Countries); })
-            .attr("y", function(d) { return y(+d.Social_exclusion2007); })
-            .attr("width", x.bandwidth())
-            .attr("height", function(d) { return height - y(+d.Social_exclusion2007); })
-            .attr("opacity", 0.8);
 
-        g.selectAll(".point")
-            .data(dataset)
+        g.append("g")
+            .attr("class", "points")
+            .selectAll(".points")
+            .data(dataset, function (d) {
+                return d.Countries
+            })
             .enter()
             .append("circle")
             .attr("fill", "steelblue")
-            .attr("transform", "translate("+12.0+"," + 0 + ")") // translate the points in the middle of the bars 
             .attr("r", 3.5)
-            .attr("cx", function(d) { return x(d.Countries); })
+            .attr("cx", function(d) { return x(d.Social_exclusion2007); })
             .attr("cy", function(d) { return y(+d.Deprivation2007); });
+
+
+        g.select(".points")
+            .selectAll("text")
+            .data(dataset, function (d) {
+                return d.Countries
+            })
+            .enter()
+            .append("text")
+            .attr("class", "countryLabels")
+            .text(function (d) {
+                return d.Countries
+            }).attr("x", function(d) { return x(d.Social_exclusion2007); })
+            .attr("y", function(d) { return y(+d.Deprivation2007); })
+            .attr("opacity", 0.5)
+
+            .on("mouseover", function () {
+                d3.select(this)
+                    .classed("highlighted", true)
+            })
+            .on("mouseout", function () {
+                d3.select(this)
+                    .classed("highlighted", false)
+
+
+            });
+
 
 
         d3.select(".soc_depr_barplots").select(".arrow.right")
@@ -878,36 +952,9 @@ function init() {
                 update_exclusion_deprivation(dataset_depr, "2007")
             });
 
-        legend = svg.append("g")
-            .attr("class", "legend" );
-
-        legend.append('rect')
-            .attr("x", width - margin.left - 5)
-            .attr("y", margin.top - 7)
-            .attr("width", 160)
-            .attr("height", 20)
-            .attr("fill", "white")
-            .attr("background-color", "none");
-
-        legend.append('rect')
-            .attr("x", width - margin.left)
-            .attr("y", margin.top)
-            .attr("width", 10)
-            .attr("height", 10)
-            .attr("fill",  "steelblue");
-
-        legend.append("text")
-            .attr("x", width - margin.left + 20)
-            .attr("y", margin.top+10)
-            .text("Social Deprivation");
-
-        var box =[];
-        lay = d3.select(".legend")
-            .selectAll("text")
-            .each(function (d) {
-                box.push(this.getBBox())
-            })
+        checker(g)
     }
+
 
     function update_exclusion_deprivation(dataset, year) {
 
@@ -919,24 +966,25 @@ function init() {
         var width = +svg.node().getBoundingClientRect().width - margin.left - margin.right;
         var height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
 
-        var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+        var x = d3.scaleLinear().rangeRound([0, width]),
             y = d3.scaleLinear().rangeRound([height, 0]);
 
-        x.domain(dataset_updated.map(function(d) {
-            return d.Countries;
-        }));
 
-        y.domain([0, 3.8]);
+        x.domain([1.4,d3.max(dataset_depr.map(function(d) {
+            return d["Social_exclusion"+year] ; }))]);
+        y.domain(d3.extent(dataset_depr.map(function(d) {
+            return d["Deprivation"+year] ; })));
+
 
         var g = d3.select("#soc_dep");
 
         g.select(".y-axis")
-            .call(d3.axisLeft(y).ticks(15));
+            .call(d3.axisLeft(y));
 
         g.select(".x-axis")
             .transition()
             .duration(1500)
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x).ticks(25));
 
         // add title to plot 
         g.select("#title_text")
@@ -946,46 +994,71 @@ function init() {
             .attr("text-anchor", "middle")
             .text("Social Exclusion correlated to Social Deprivation - year "  +year);
 
-        g.selectAll("rect")
-            .data(dataset_updated)
-            .transition()
-            .duration(500)
-            .attr("x", function(d) {
-                return x(d.Countries);
-            })
-            .attr("y", function(d) { return y(+d["Social_exclusion" +year]); })
-            .attr("width", x.bandwidth())
-            .attr("height", function(d) { return height - y(+d["Social_exclusion"+year]); })
-            .attr("opacity", 0.8);
-
         g.selectAll("circle")
             .data(dataset_updated)
             .transition()
             .duration(500)
             .delay(function(d, i) {
                 return i / 30* 1000;
+            }).on("start", function() {
+            d3.select(this)
+                .attr("fill", "magenta")
+                .attr("r", 6);
+        })
+            .attr("cx", function(d) {
+                return x(+d["Social_exclusion" +year] );
             })
-            .on("start", function() {
-                d3.select(this)
-                    .attr("fill", "magenta")
-                    .attr("r", 6);
-            })
-            .attr("cx", function(d) { return x(d.Countries); })
-            .attr("cy", function(d) { return y(+d["Deprivation" +year]); })
+            .attr("cy", function(d) { return y(d["Deprivation"+year]); })
+
             .on("end", function() {
+            d3.select(this)
+                .attr("r", 3.5)
+                .attr("fill", "steelblue")
+        });
+
+
+        g.select(".points")
+            .selectAll("text")
+            .data(dataset, function (d) {
+                return d.Countries
+            })
+            .text(function (d) {
+                return d.Countries
+            })
+            .transition()
+            .duration(500)
+            .delay(function(d, i) {
+                return i / 30* 1000;
+            })
+            .attr("x", function(d) { return x(+d["Social_exclusion"+year]); })
+            .attr("y", function(d) { return y( d["Deprivation"+year]); })
+            .attr("opacity", 0.5)
+
+            .on("mouseover", function () {
                 d3.select(this)
-                    .attr("r", 3.5)
-                    .attr("fill", "steelblue")
+                    .classed("highlighted", true)
+            })
+            .on("mouseout", function () {
+                d3.select(this)
+                    .classed("highlighted", false)
+
+
             });
+
+
 
     }
 
     function draw_who_gender_points(dataset){
 
+
         var svg = d3.select("#WHO_points_gender"),
             margin = {top: 80, right: 50, bottom: 150, left: 100},
             width = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
             height = +svg.node().getBoundingClientRect().height - margin.top - margin.bottom;
+
+        console.log(width)
+        console.log(width)
 
         var g = svg.append("g")
             .attr("id", "WHOgender")
@@ -1184,7 +1257,13 @@ keys.forEach(function (t,i) {
                 .selectAll("circle")
                 .data(data)
                 .transition()
-                .duration(500)
+                .duration(200)
+                .attr("cx", 0)
+                .attr("cy", height)
+                .transition()
+                .delay(function(d, i) {
+                    return i / 100* 1000;
+                })
                 .ease(d3.easeLinear)
                 .attr("cx", function (d) {return x(d.Country);})
                 .attr("cy", function (d) {
@@ -1213,6 +1292,7 @@ keys.forEach(function (t,i) {
 
     }
 
+
     function draw_who_age_points(dataset){
 
         var svg = d3.select("#WHO_points_age"),
@@ -1232,17 +1312,12 @@ keys.forEach(function (t,i) {
             .rangeRound([height, 0]);
 
         var z = d3.scaleOrdinal()
-            .range(["#005960", "#F6D155", "#5A7247", "#6b486b", "#a05d56"]);
+            .range(["#fef0d9",
+"#fdcc8a",
+"#fc8d59",
+"#e34a33",
+"#b30000"]);
 
-
-        var data = dataset.map(function (t) {
-            return {
-                Country:t.Countries,
-                WHO: [t.MaleWHO2007,t.FemaleWHO2007]
-            }
-        })
-
-        var keys = ["MaleWHO", "FemaleWHO"];
 
         x.domain(dataset.map(function (d) {return d.Countries;}));
 
@@ -1265,7 +1340,16 @@ keys.forEach(function (t,i) {
         dataset = dataset.sort(function (a,b) {
             return d3.descending(+a["Who2007"], +b["Who2007"]); });
 
+        var cake = []
+        var cakes= []
         dataset.forEach(function (t) {
+
+            cake.push({Country:t.Countries, group:"a18to24WHO_", val: t.a18to24WHO_2007})
+            cake.push({Country:t.Countries, group:"a25to34WHO_", val: t.a25to34WHO_2007})
+            cake.push({Country:t.Countries, group:"a35to49WHO_", val: t.a35to49WHO_2007})
+            cake.push({Country:t.Countries, group:"a50to64WHO_", val: t.a50to64WHO_2007})
+            cake.push({Country:t.Countries, group:"a64WHO_", val: t.a64WHO_2007})
+
 
             values = [
                 [t.Countries, t.a25to34WHO_2007],
@@ -1274,6 +1358,8 @@ keys.forEach(function (t,i) {
                 [t.Countries, t.a50to64WHO_2007],
                 [t.Countries, t.a64WHO_2007]
             ];
+
+            cakes.push({Country:t.Countries, val:values})
 
             var maxmin = d3.extent(values, function (d) {
                 return d[1]
@@ -1304,34 +1390,27 @@ keys.forEach(function (t,i) {
         });
 
 
-
-        g.selectAll("#WHOage")
-            .data(keys)
-            .enter()
-            .append("g")
-            .attr("class", function (t) {
-                return t
-            })
-
-
-        keys.forEach(function (t,i) {
-
-            g.select("."+t)
-                .selectAll("circle")
-                .data(data, function key(d) {
-                    return d.Country;
-                } )
-                .enter()
-                .append("circle")
-                .attr("cx", function (d) {return x(d.Country);})
-                .attr("cy", function (d) {
-
-                    return y( d.WHO[i]);})
-                .attr("fill", function(d) {return z(t); })
-                .attr('opacity', 1)
-                .attr("r", 5);
+keys.forEach(function (group,i) {
+    g.append("g")
+        .attr("class",group)
+        .selectAll(".circles")
+        .data(cakes, function (d,i) {
+            return d.Country
         })
+        .enter()
+        .append("circle")
+        .attr("cx", function (d) {
 
+            return  x(d.Country);
+
+        })
+        .attr("cy", function (d) {
+            return y( d.val[i][1]);})
+        .attr("fill", function(d) {return z(group); })
+        .attr('opacity', 1)
+        .attr("r", 5);
+
+})
 
 
         g.append("g")
@@ -1414,10 +1493,7 @@ keys.forEach(function (t,i) {
                 .attr("y", margin.top +8+ +20*i)
                 .attr("font-size", "12px")
                 .text(groups[i])
-
         })
-
-
 
     }
 
@@ -1451,9 +1527,16 @@ keys.forEach(function (t,i) {
         x.domain(dataset.map(function (d) {return d.Countries;}));
         y.domain([0, 120]);
 
-        // z.domain(keys); 
 
+        var cake = []
+var cakes =[]
         dataset.forEach(function (t) {
+
+            cake.push({Country:t.Countries, group:"a18to24WHO_", val: t["a18to24WHO_"+year]})
+            cake.push({Country:t.Countries, group:"a25to34WHO_", val: t["a25to34WHO_"+year]})
+            cake.push({Country:t.Countries, group:"a35to49WHO_", val: t["a35to49WHO_"+year]})
+            cake.push({Country:t.Countries, group:"a50to64WHO_", val: t["a50to64WHO_"+year]})
+            cake.push({Country:t.Countries, group:"a64WHO_", val: t["a64WHO_"+year]})
 
             values = [
                 [t.Countries, t["a18to24WHO_"+year]],
@@ -1463,11 +1546,11 @@ keys.forEach(function (t,i) {
                 [t.Countries, t["a64WHO_"+year]]
             ];
 
+            cakes.push({Country:t.Countries, val:values})
+
             var maxmin = d3.extent(values, function (d) {
                 return d[1]
             });
-
-            twos = [[t.Countries, maxmin[1]], [t.Countries, maxmin[0]]];
 
             var line = d3.line()
                 .x(function(d) {
@@ -1483,43 +1566,23 @@ keys.forEach(function (t,i) {
                 var selector= ".ageline" +t.Countries
             }
 
+            twos = [maxmin[0], maxmin[1]];
+
             svg.select("#WHOage")
                 .select(selector)
                 .select("path")
-                .data([twos])
-                .transition()
-                .duration(500)
-                .ease(d3.easeLinear)
-                .on("start", function () {
-                    d3.select(this)
-                        .attr("d", "M0,0")
+                .data([twos], function () {
+                    return
                 })
-                .on("end", function () {
-                    d3.select(this)
-                        .attr("d", line)
+                .transition()
+                .duration(1100)
+                .ease(d3.easeLinear)
+                .attr("d", function (ggg) {
+                    return 'M ' +x(t.Countries) +' '+y(ggg[0]) + ' V ' +y(ggg[1])+''
                 })
 
 
         });
-
-
-        keys.forEach(function (t,i) {
-
-            g.select("."+t)
-                .selectAll("circle")
-                .data(data, function key(d) {
-                    return d.Country;
-                } )
-                .transition()
-                .duration(500)
-                .ease(d3.easeLinear)
-                .attr("cx", function (d) {return x(d.Country);})
-                .attr("cy", function (d) {
-                    return y(d.WHO[i]);})
-
-        });
-
-
 
         g.select(".x-axis")
             .transition()
@@ -1534,9 +1597,30 @@ keys.forEach(function (t,i) {
             .text("Mental Well-Being Index by Age Group, Year: "+year);
 
 
+        keys.forEach(function (group,i) {
+            g.select("."+group)
+                .selectAll("circle")
+                .data(cakes, function (d) {
+                    return d.Country
+                })
+                .transition()
+                .duration(200)
+                .delay(function(d, i) {
+                    return ((i+1) / 30)* 1000;
+                })
+                .ease(d3.easeLinear)
+                .attr("cx", function (d) {
+
+                    return  x(d.Country);
+
+                })
+                .attr("cy", function (d) {
+                    return y( d.val[i][1]);})
+
+
+        })
 
     }
 
-
-} 
+}
  

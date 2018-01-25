@@ -17,6 +17,7 @@ p {
     align-content: center;
     margin: auto;
     padding: 15px 0 20px 0;
+    font-size: 1vw;
 }
 
 h2 {
@@ -88,6 +89,25 @@ h2 {
     font-size: 0.75vw;
 }
 
+
+.xlab{
+    font-size: 1vw;
+}
+
+.ylab{
+    font-size: 1vw;
+}
+
+.countryLabels{
+    font-size: 0.75vw;
+    opacity: 0.5;
+}
+
+.highlighted{
+    opacity:1.0;
+    stroke-width: 0.015vw;
+    stroke: grey;
+}
 
 .controls_box{
     position:relative;
@@ -201,8 +221,8 @@ fieldset[name="variables_selection"] {
     left: 50%;
     border-top: 1vmin solid white;
     border-right: 1vmin solid white;
-    width: 20px;
-    height: 20px;
+    width: 1vw;
+    height: 1vw;
     transform: rotate(-225deg);
     -webkit-animation: bounce 1s infinite;
     -webkit-transition: 10s ease-out;
@@ -296,7 +316,7 @@ fieldset[name="variables_selection"] {
 
 
 
-#div_who{
+.text_container{
     position:relative;
     margin: auto;
     background-color: white;
@@ -375,7 +395,7 @@ fieldset[name="variables_selection"] {
     font-size: 1vw;
 }
 
-#text_points_gender {
+.text_points {
     background-color: ghostwhite;
     width: 40%;
     margin: auto;
