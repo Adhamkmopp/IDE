@@ -214,11 +214,11 @@ width = width- margin.left - margin.right;
                         if (j == 1 && year == 2007) {
                             return  ( ((margin.top) ))
                         } else if (year==2007){
-                            return  (((height-margin.top) / 4)
+                            return  ((height-margin.top) / 4)
                         } else if (j == 1 && year == 2011) {
-                            return  (((height-margin.top) / 2))
+                            return  ((height-margin.top) / 2)
                         } else {
-                            return ((height-margin.bottom))
+                            return (height-margin.bottom)
                         }
                     })
                     .selectAll("arc")
