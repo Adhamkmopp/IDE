@@ -148,7 +148,7 @@ function init() {
         var svg = d3.select("#pie_container");
         var width = +svg.node().getBoundingClientRect().width
         var height = +svg.node().getBoundingClientRect().height
-        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
+        var margin = {top: 0.1*height, right: 0.1*width, bottom:0.1*height, left: 0.1*width};
 
 height = height - margin.top - margin.bottom;
 width = width- margin.left - margin.right;
@@ -165,8 +165,8 @@ width = width- margin.left - margin.right;
             .attr("class", "tooltip")
             .style("opacity", 0.9);
         keys.forEach(function (year,i) {
-            pie_outer_radius= 35;
-            pie_inner_radius= 15;
+            pie_outer_radius= 50;
+            pie_inner_radius= 30;
 
             arc = d3.arc()
                 .outerRadius(pie_outer_radius)
@@ -186,12 +186,12 @@ width = width- margin.left - margin.right;
 
             svg.append("text")
                 .text(year)
-                .attr("x",  margin.left/2)
+                .attr("x",  margin.left/3)
                 .attr("y",function (t) {
                     if(i==0){
-                        return margin.top*2
+                        return margin.top
                     } else{
-                        return (height/2) + margin.top*2
+                        return (height/2) + margin.top
                     }
                 } ).attr("font-size", "1vw")
                 .attr("text-decoration", "underline");
@@ -210,17 +210,18 @@ width = width- margin.left - margin.right;
                 height in the middle of the svg*/
                 var edu = svg.append("g")
                     .attr("id", "" + variablename + year+ "donut")
-                     .attr("transform", function () {
+                    .attr("transform", function () {
                         if (j == 1 && year == 2007) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ( ((margin.top) )) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (( margin.bottom +margin.top)) + ")"
                         } else if (year==2007){
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height-margin.top) / 4)+) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height+margin.top+margin.bottom) / 4)+pie_outer_radius) + ")"
                         } else if (j == 1 && year == 2011) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height-margin.top) / 2)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height+margin.top+margin.bottom) / 2)) + ")"
                         } else {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ((height-margin.bottom)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ((height -margin.bottom - margin.top+pie_outer_radius)) + ")"
                         }
                     })
+
                     .selectAll("arc")
                     .data(somepie.sort(function (a, b) {
                         // sorting is important if we want variable pie sizes later but I don't believe we will need it 
@@ -319,14 +320,14 @@ width = width- margin.left - margin.right;
                     .attr("id", "" + variablename + year+ "info");
 
                 donut_info.append("circle")
-                    .attr("r", 22)
+                    .attr("r", 30)
                     .attr("fill", "floralwhite")
                     .attr("opacity", "0.6");
 
                 donut_info.append("text")
                     .text(variablename)
                     .attr("text-anchor", "middle")
-                    .attr("font-size", "9.0px")
+                    .attr("font-size", "0.75vw")
                     .attr("dy", "-0.35em")
                     .attr("text-decoration", "underline")
 

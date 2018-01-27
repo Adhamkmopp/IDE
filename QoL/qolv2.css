@@ -338,7 +338,7 @@ fieldset[name="variables_selection"] {
     align-content: stretch;
     flex-direction: row;
     flex: 1 1 100vw;
-    margin: 20px;
+    margin: auto;
     background-color: ghostwhite;
     border:20px;
 }
