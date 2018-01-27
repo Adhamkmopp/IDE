@@ -210,15 +210,15 @@ width = width- margin.left - margin.right;
                 height in the middle of the svg*/
                 var edu = svg.append("g")
                     .attr("id", "" + variablename + year+ "donut")
-                    .attr("x", function () {
+                     .attr("transform", function () {
                         if (j == 1 && year == 2007) {
-                            return  ( ((margin.top) ))
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ( ((margin.top) )) + ")"
                         } else if (year==2007){
-                            return  ((height-margin.top) / 4)
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height-margin.top) / 4)+) + ")"
                         } else if (j == 1 && year == 2011) {
-                            return  ((height-margin.top) / 2)
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height-margin.top) / 2)) + ")"
                         } else {
-                            return (height-margin.bottom)
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ((height-margin.bottom)) + ")"
                         }
                     })
                     .selectAll("arc")
