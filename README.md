@@ -3,7 +3,7 @@
 Adham Khaled, Carlotta Porcelli
 
 
-## Directories:
+## Assignments:
 
 - [original_data](./original_data): given SNP data
 - [processed_data](./processed_data): processed from original_data with commands given in `scripts\`
