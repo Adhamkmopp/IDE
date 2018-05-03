@@ -5,16 +5,16 @@ Adham Khaled, Carlotta Porcelli
 
 ## Assignments:
 
-- [original_data](./original_data): given SNP data
-- [processed_data](./processed_data): processed from original_data with commands given in `scripts\`
-- [additional_files](./additional_files): files created for some analyses
-- [results](./results): output from analyses
-- [scripts](./scripts): as markdown or script files
+- [Assignment 1](./Assignment1): given SNP data
+- [Assignment 2](./docs/assignment2_page.html	): processed from original_data with commands given in `scripts\`
+- [Assignment 3](./docs/assignment3_page.html): files created for some analyses
+- [Assignment 4](./docs/assignment4_page.html): output from analyses
+- [Exam](./QoL/qolv2.html): as markdown or script files
 
 
 ## Scripts
 
-0. [Pre-processing](./scripts/0.pre-processing)
+0. [Pre-processing](./Assignment1)
 1. [PCA with PLINK](./scripts/1.PLINK_PCA_with_pruning.md)
 2. [Genetic distance with adegenet](./scripts/2.Adegenet.Rmd)
 3. [ADMIXTURE](./scripts/3.ADMIXTURE.md)
