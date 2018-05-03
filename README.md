@@ -2,20 +2,17 @@
 #### Author: (alphabetical order)
 Adham Khaled, Carlotta Porcelli
 
+## Course Summary:
+Learning and applying JavaScript and CSS through data visualization in d3
 
 ## Assignments:
 
-- [Assignment 1](./Assignment1): given SNP data
-- [Assignment 2](./docs/assignment2_page.html	): processed from original_data with commands given in `scripts\`
-- [Assignment 3](./docs/assignment3_page.html): files created for some analyses
-- [Assignment 4](./docs/assignment4_page.html): output from analyses
-- [Exam](./QoL/qolv2.html): as markdown or script files
+- [Assignment 1](./Assignment1): Simple practice in html and css syntax
+- [Assignment 2](./docs/assignment2_page.html	): Two non-interactive plots for temperature changes over the past 100 years
+- [Assignment 3](./docs/assignment3_page.html): Donald Trump family tree (unfortunate and forced choice). Practice with path building and automated trees with some minor interative elements (lisening events)
+- [Assignment 4](./docs/assignment4_page.html): Hand shapes PCA plots with more advanced interactive elements and in re-enforcing the enter-update-exit pattern concept
+- [Exam](./QoL/qolv2.html): Final project, from the European Quality of Life Project.
 
 
-## Scripts
 
-0. [Pre-processing](./Assignment1)
-1. [PCA with PLINK](./scripts/1.PLINK_PCA_with_pruning.md)
-2. [Genetic distance with adegenet](./scripts/2.Adegenet.Rmd)
-3. [ADMIXTURE](./scripts/3.ADMIXTURE.md)
-4. [TreeMix](./scripts/4.Treemix.md)
+
