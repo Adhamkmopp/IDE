@@ -130,7 +130,6 @@ h2 {
 }
 #the_form {
     flex-basis: auto;
-
     display:flex;
     transform: translateY(+20px);
     background-color: inherit;
@@ -170,15 +169,12 @@ fieldset[name="variables_selection"] {
 .left {
     margin: auto;
     display: inline;
-
     transform: rotate(-135deg);
 }
 
 .right {
     margin: auto;
     display: inline;
-
-
     transform: rotate(45deg);
 
 }
@@ -208,11 +204,11 @@ fieldset[name="variables_selection"] {
     left: 50%;
     border-top: 1vmin solid white;
     border-right: 1vmin solid white;
-    width: 20px;
-    height: 20px;
+    width: 1vw;
+    height: 1vw;
     transform: rotate(-45deg);
     -webkit-animation: bounce 1s infinite;
-    -webkit-transition: 10s ease-out;
+    -webkit-transition: 8s ease-out;
     -webkit-transition-duration: 30s;
 }
 
@@ -226,7 +222,7 @@ fieldset[name="variables_selection"] {
     height: 1vw;
     transform: rotate(-225deg);
     -webkit-animation: bounce 1s infinite;
-    -webkit-transition: 10s ease-out;
+    -webkit-transition: 8 ease-out;
     -webkit-transition-duration: 30s;
 
 }
@@ -255,14 +251,14 @@ fieldset[name="variables_selection"] {
     position: relative;
     background-color: ghostwhite;
     max-height: inherit;
-    margin: 2vw 2vw;
+    margin: 2vw 4vw;
 }
 
 #social_deprivation{
     position: relative;
     background-color: ghostwhite;
     max-height: inherit;
-    margin: 2vw 2vw;
+    margin: 2vw 4vw;
 }
 
 
