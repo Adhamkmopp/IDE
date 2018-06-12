@@ -255,26 +255,29 @@ fieldset[name="variables_selection"] {
     position: relative;
     background-color: ghostwhite;
     max-height: inherit;
+    margin: 2vw 2vw;
 }
 
 #social_deprivation{
     position: relative;
     background-color: ghostwhite;
     max-height: inherit;
+    margin: 2vw 2vw;
 }
-}
+
 
 #WHO_points_gender{
     position: relative;
     background-color: ghostwhite;
     max-height: inherit;
+    margin: 2vw 2vw;
 }
 
 #WHO_points_age{
     position: relative;
     background-color: ghostwhite;
     max-height: inherit;
-
+    margin: 2vw 2vw;
 
 }
 
