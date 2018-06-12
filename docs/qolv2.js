@@ -749,10 +749,10 @@ width = width- margin.left - margin.right;
 
         // add text to the X axis
         g.append("g")
-            .attr("class", "xlab")
+            .attr("id", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", margin.bottom)
+            .attr("y", 0)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
