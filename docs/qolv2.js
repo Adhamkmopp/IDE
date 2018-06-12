@@ -698,11 +698,12 @@ width = width- margin.left - margin.right;
                 
         var svg = d3.select("#social_exclusion");
         var viewbox= svg.attr("viewBox").split(" ")
-        var size = viewbox.slice(2)
-        svg.style("width", width)
-           .style("height", height);
+        var size = viewbox.slice(4)
         var width = size[0]
         var height = size[1]
+        console.log(size)
+         svg.attr("width", width)
+           .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
