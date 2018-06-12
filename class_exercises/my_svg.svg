@@ -1,0 +1,13 @@
+<svg width="210" height="195px">
+  <circle cx="50" cy="60" r="20" stroke="black" stroke-width="4" fill="#c6ebd9"></circle>
+  <circle cx="150" cy="50" r="35" stroke="black" stroke-width="4" fill="#d9c6eb"></circle>
+
+  <g> <!-- Nose group -->
+    <line x1="90" y1="100" x2="85" y2="120" style="stroke:black;stroke-width:4"></line>
+    <line x1="100" y1="110" x2="85" y2="120" style="stroke:black;stroke-width:4"></line>
+  </g>
+
+  <polygon points="75,150 100,170 200,100" style="stroke:black;stroke-width:4;fill:#009933;"></polygon>
+
+  <text x="30" y="190" style="font-size:14pt">Hi!</text>
+</svg>

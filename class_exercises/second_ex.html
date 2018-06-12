@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="selector.js"></script>
+
+    <meta charset="utf-8">
+    <title>D3 Page Template</title>
+    <style>
+        body div {
+            position:absolute;
+            width:10px;
+            height: 10px;
+
+        }
+        #plotarea {
+             width:300px;
+             height:300px;
+             border:1px solid grey;
+         }
+        #plotarea circle {
+            fill:red;
+        }
+    </style>
+    <img src="my_svg.svg" alt="shapes">
+</head>
+<body>
+<svg id="plotarea"></svg>
+<table>
+    <!-- Header row -->
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Age
+        </th>
+        <th>
+            Species
+        </th>
+    </tr>
+
+    <!-- Table contents -->
+    <tr>
+        <td>
+            Arthur Dent
+        </td>
+        <td>
+            42
+        </td>
+        <td>
+            Human
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ford Prefect
+        </td>
+        <td>
+            133
+        </td>
+        <td>
+            Betelgeusian
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Zaphod Beeblebrox
+        </td>
+        <td>
+            151
+        </td>
+        <td>
+            Betelgeusian
+        </td>
+    </tr>
+</table>
+
+<table id="second_table">
+    <!-- Header row -->
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Species</th>
+    </tr>
+
+    <!-- Table contents empty -->
+</table>
+<ul>
+
+</ul>
+
+</body>
+</html>

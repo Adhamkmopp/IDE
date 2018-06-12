@@ -1,0 +1,13 @@
+/* Set style for x-axis */
+.axis.x {
+    font-size: 50%;
+}
+/* Set style for axis text elements */
+.axis text {
+    fill:blue;
+}
+
+.dot{
+    stroke: #000;
+}
+

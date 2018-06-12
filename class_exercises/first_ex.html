@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+       <title>This is the first template</title>
+        <!-- id is assumed to be unique in a document, classes are not -->
+
+        <style>
+            #id1 {
+                font-weight:bold;
+            }
+
+            .class1 {
+                font-weight:bold;
+            }
+
+            .col50 {
+                width:50%;
+                float:left;
+            }
+
+            li {
+                font-weight:bold;
+            }
+
+            li#third {
+                color:red;
+            }
+
+        </style>
+        <!-- we will execute the function when the body section is read through-->
+
+        <script>
+              window.onload  = function () {
+                document.write('Hello, World');
+                var p = document.createElement("p");
+                var text = document.createTextNode("Hi, world\n");
+                p.appendChild(text);
+                document.body.appendChild(p);
+            };
+
+            // Creating two variables
+            var x = 1.0;
+            var y = 2.0;
+
+            // Using alert() to notify the user of the sum
+            // (you can also use console.log to write to the console)
+            alert("The sum of " + x + " and " + y + " is " + (x+y));
+
+            // If statement
+            if (x < y ) {
+                alert("" + x + " is smaller than " + y);
+            }
+
+            // Loop - writing to document
+            for (var i=0; i<10; i++) {
+                document.write("" + i + " ");
+            }
+
+            // Function definition
+            function print_str(str) {
+                document.write("<br>" + str + "<br>");
+            }
+
+            // Calling a function
+            print_str("Hello, World!");
+
+            // Arrays (i.e., lists)
+            var arr = [1, 2, "hello"];
+            document.write("array entry: " + arr[2]);
+
+            // Maps (i.e., dictionaries)
+            var dic = {2:"two", '3':"three"};
+            document.write("dict entry: " + dic['3']);
+
+            function onbuttonpressed() {
+                console.log('Button pressed');
+            }
+
+        </script>
+
+    </head>
+
+    <body>
+        <h2>This is the header</h2>
+
+        <button onclick='onbuttonpressed()'>Button</button>
+
+        <div>
+            <a href='https://it.wikipedia.org/wiki/D3.js'>This is a link</a>
+        </div>
+        <a href="https://it.wikipedia.org/wiki/D3.js">
+            <img src='https://media-cdn.tripadvisor.com/media/photo-s/01/7c/c7/ad/seaside.jpg'/> </a>
+
+        <div>
+            <a href='https://media-cdn.tripadvisor.com/media/photo-s/01/7c/c7/ad/seaside.jpg'> This is an image with a link</a>
+        </div>
+
+        <div>
+            <p style="font-weight:bold;">Hello</p>
+        </div>
+        <p id="id1">Hello</p>
+        <p class="class1">Hello</p>
+
+        <div class="col50" style="background:red">
+            hello
+        </div>
+        <div class="col50" style="background:green">
+            hi
+        </div>
+
+        <div>
+            <ol>
+                <li id="first">One</li>
+                <li id="second">Two</li>
+                <li id="third">Three</li>
+                <li id="fourth">Four</li>
+            </ol>
+        </div>
+
+
+    </body>
+
+
+</html>
