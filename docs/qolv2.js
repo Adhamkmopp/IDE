@@ -219,7 +219,7 @@ width = width- margin.left - margin.right;
                         } else if (j == 1 && year == 2011) {
                             return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 3)) + ")"
                         } else {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 1.5)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height))) + ")"
                         }
                     })
                     .selectAll("arc")
