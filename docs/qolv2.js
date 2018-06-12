@@ -701,7 +701,6 @@ width = width- margin.left - margin.right;
         var size = viewbox.slice(2)
         var width = size[0]
         var height = size[1]
-        console.log(size)
          svg.attr("width", width)
            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
@@ -837,8 +836,12 @@ checker(g)
             return d3.descending(a.Social_exclusion2007, b.Social_exclusion2007); });
 
         var svg = d3.select("#social_deprivation");
-        var width = +svg.node().getBoundingClientRect().width
-        var height = +svg.node().getBoundingClientRect().height
+       var viewbox= svg.attr("viewBox").split(" ")
+        var size = viewbox.slice(2)
+        var width = size[0]
+        var height = size[1]
+         svg.attr("width", width)
+           .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -979,8 +982,12 @@ checker(g)
             return d3.descending(a["Social_exclusion"+year], b["Social_exclusion"+year]); });
 
         var svg = d3.select("#social_deprivation");
-        var width = +svg.node().getBoundingClientRect().width
-        var height = +svg.node().getBoundingClientRect().height
+       var viewbox= svg.attr("viewBox").split(" ")
+        var size = viewbox.slice(2)
+        var width = size[0]
+        var height = size[1]
+         svg.attr("width", width)
+           .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -1073,8 +1080,12 @@ checker(g)
 
 
         var svg = d3.select("#WHO_points_gender")
-        var width = +svg.node().getBoundingClientRect().width
-        var height = +svg.node().getBoundingClientRect().height
+        var viewbox= svg.attr("viewBox").split(" ")
+        var size = viewbox.slice(2)
+        var width = size[0]
+        var height = size[1]
+         svg.attr("width", width)
+           .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -1243,8 +1254,12 @@ keys.forEach(function (t,i) {
         })
 
         var svg = d3.select("#WHO_points_gender")
-        var width = +svg.node().getBoundingClientRect().width
-        var height = +svg.node().getBoundingClientRect().height
+        var viewbox= svg.attr("viewBox").split(" ")
+        var size = viewbox.slice(2)
+        var width = size[0]
+        var height = size[1]
+         svg.attr("width", width)
+           .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -1319,8 +1334,12 @@ keys.forEach(function (t,i) {
     function draw_who_age_points(dataset){
 
         var svg = d3.select("#WHO_points_age")
-        var width = +svg.node().getBoundingClientRect().width
-        var height = +svg.node().getBoundingClientRect().height
+        var viewbox= svg.attr("viewBox").split(" ")
+        var size = viewbox.slice(2)
+        var width = size[0]
+        var height = size[1]
+         svg.attr("width", width)
+           .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -1526,8 +1545,12 @@ keys.forEach(function (group,i) {
 
     function update_WHO_age (dataset, year){
         var svg = d3.select("#WHO_points_age")
-        var width = +svg.node().getBoundingClientRect().width
-        var height = +svg.node().getBoundingClientRect().height
+        var viewbox= svg.attr("viewBox").split(" ")
+        var size = viewbox.slice(2)
+        var width = size[0]
+        var height = size[1]
+         svg.attr("width", width)
+           .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
