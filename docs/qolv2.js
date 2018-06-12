@@ -761,18 +761,15 @@ width = width- margin.left - margin.right;
 
 
         // add text to the Y axis
-        g.append("g")
-            .attr("class", "ylab")
-            .attr("transform", "translate(0," + height/2 + ")")
-            .append("text")
+       g.append("text")
+            .attr("id", "ylab")
             .attr("transform", "rotate(-90)")
-            .attr("y",  - margin.right)
-            .attr("x", 0)
+            .attr("y", 50 - margin.left)
+            .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
-            .attr("font-size", "1vw")
-            .text("Social Contact");
-
+            .text("Social Deprivation")
+            .attr("font-size", "12px");
 
 
         // add title to plot
@@ -895,16 +892,15 @@ checker(g)
 
 
         // add text to the Y axis 
-        g.append("g")
-            .attr("class", "ylab")
-             .attr("transform", "rotate(-90)")
-            .attr("y", 50-margin.left)
+        g.append("text")
+            .attr("id", "ylab")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 50 - margin.left)
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
             .text("Social Deprivation")
             .attr("font-size", "12px");
-        
 
    
 
@@ -997,7 +993,7 @@ checker(g)
 
         x.domain([1.4,d3.max(dataset_depr.map(function(d) {
             return d["Social_exclusion"+year] ; }))]);
-        
+        y.domain([0,4]);
 
 
         var g = d3.select("#soc_dep");
