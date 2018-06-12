@@ -752,7 +752,7 @@ width = width- margin.left - margin.right;
             .attr("class", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", margin.bottom-70)
+            .attr("y", margin.bottom)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
@@ -861,8 +861,7 @@ checker(g)
 
         x.domain([1.4,d3.max(dataset_depr.map(function(d) {
             return d.Social_exclusion2007; }))]);
-        y.domain(d3.extent(dataset_depr.map(function(d) {
-            return d.Deprivation2007; })));
+        y.domain([0,4])
 
         g.append("g")
             .attr("class", "x-axis")
@@ -871,7 +870,6 @@ checker(g)
             .selectAll(".tick")
             .select("text")
             .attr("transform", "translate(0," + 10 + ")")
-
             .attr("text-anchor", "middle");
 
         g.append("g")
@@ -888,7 +886,7 @@ checker(g)
             .attr("class", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", margin.bottom-70)
+            .attr("y", margin.bottom)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
@@ -899,16 +897,16 @@ checker(g)
         // add text to the Y axis 
         g.append("g")
             .attr("class", "ylab")
-            .attr("transform", "translate(0," + height/2 + ")")
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y",  - margin.right)
-            .attr("x", 0)
+             .attr("transform", "rotate(-90)")
+            .attr("y", 50-margin.left)
+            .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
-            .attr("font-size", "1vw")
-            .text("Social Deprivation");
+            .text("Social Deprivation")
+            .attr("font-size", "12px");
+        
 
+   
 
         // add title to plot 
         g.append("text")
@@ -982,7 +980,7 @@ checker(g)
             return d3.descending(a["Social_exclusion"+year], b["Social_exclusion"+year]); });
 
         var svg = d3.select("#social_deprivation");
-       var viewbox= svg.attr("viewBox").split(" ")
+        var viewbox= svg.attr("viewBox").split(" ")
         var size = viewbox.slice(2)
         var width = size[0]
         var height = size[1]
@@ -999,8 +997,7 @@ checker(g)
 
         x.domain([1.4,d3.max(dataset_depr.map(function(d) {
             return d["Social_exclusion"+year] ; }))]);
-        y.domain(d3.extent(dataset_depr.map(function(d) {
-            return d["Deprivation"+year] ; })));
+        
 
 
         var g = d3.select("#soc_dep");
@@ -1011,7 +1008,11 @@ checker(g)
         g.select(".x-axis")
             .transition()
             .duration(1500)
-            .call(d3.axisBottom(x).ticks(25));
+            .call(d3.axisBottom(x).ticks(25))
+            .selectAll(".tick")
+            .select("text")
+            .attr("transform", "translate(0," + 10 + ")")
+            .attr("text-anchor", "middle");
 
         // add title to plot 
         g.select("#title_text")
