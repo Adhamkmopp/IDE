@@ -145,6 +145,7 @@ function init() {
             };
         });
         /* setting up the svg and tooltip */
+        
         var svg = d3.select("#pie_container");
         var width = +svg.node().getBoundingClientRect().width
         var height = +svg.node().getBoundingClientRect().height
@@ -218,7 +219,7 @@ width = width- margin.left - margin.right;
                         } else if (j == 1 && year == 2011) {
                             return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 2)+100) + ")"
                         } else {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 2)+50) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 2)+150) + ")"
                         }
                     })
                     .selectAll("arc")
@@ -694,9 +695,12 @@ width = width- margin.left - margin.right;
         dataset = dataset.sort(function (a,b) {
             return d3.descending(a.Social_exclusion2011, b.Social_exclusion2011); });
 
+                
         var svg = d3.select("#social_exclusion");
-        var width = +svg.node().getBoundingClientRect().width
-        var height = +svg.node().getBoundingClientRect().height
+        var viewbox= svg.getAttribute("viewBox").split(" ")
+        var size = viewbox.slice(2)
+        var width = size[0]
+        var height = size[1]
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
