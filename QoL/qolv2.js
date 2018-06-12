@@ -148,7 +148,7 @@ function init() {
         var svg = d3.select("#pie_container");
         var width = +svg.node().getBoundingClientRect().width
         var height = +svg.node().getBoundingClientRect().height
-        var margin = {top: 0.1*height, right: 0.1*width, bottom:0.1*height, left: 0.1*width};
+        var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
 height = height - margin.top - margin.bottom;
 width = width- margin.left - margin.right;
@@ -165,8 +165,8 @@ width = width- margin.left - margin.right;
             .attr("class", "tooltip")
             .style("opacity", 0.9);
         keys.forEach(function (year,i) {
-            pie_outer_radius= 50;
-            pie_inner_radius= 30;
+            pie_outer_radius= 35;
+            pie_inner_radius= 15;
 
             arc = d3.arc()
                 .outerRadius(pie_outer_radius)
@@ -186,12 +186,12 @@ width = width- margin.left - margin.right;
 
             svg.append("text")
                 .text(year)
-                .attr("x",  margin.left/3)
+                .attr("x",  margin.left/2)
                 .attr("y",function (t) {
                     if(i==0){
-                        return margin.top
+                        return margin.top*2
                     } else{
-                        return (height/2) + margin.top
+                        return (height/2) + margin.top*2
                     }
                 } ).attr("font-size", "1vw")
                 .attr("text-decoration", "underline");
@@ -212,16 +212,15 @@ width = width- margin.left - margin.right;
                     .attr("id", "" + variablename + year+ "donut")
                     .attr("transform", function () {
                         if (j == 1 && year == 2007) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (( margin.bottom +margin.top)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ( ((height-pie_outer_radius) / 6)+30) + ")"
                         } else if (year==2007){
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height+margin.top+margin.bottom) / 4)+pie_outer_radius) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 4)+100) + ")"
                         } else if (j == 1 && year == 2011) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height+margin.top+margin.bottom) / 2)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 2)+100) + ")"
                         } else {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ((height -margin.bottom - margin.top+pie_outer_radius)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ((height)) + ")"
                         }
                     })
-
                     .selectAll("arc")
                     .data(somepie.sort(function (a, b) {
                         // sorting is important if we want variable pie sizes later but I don't believe we will need it 
@@ -320,14 +319,14 @@ width = width- margin.left - margin.right;
                     .attr("id", "" + variablename + year+ "info");
 
                 donut_info.append("circle")
-                    .attr("r", 30)
+                    .attr("r", 22)
                     .attr("fill", "floralwhite")
                     .attr("opacity", "0.6");
 
                 donut_info.append("text")
                     .text(variablename)
                     .attr("text-anchor", "middle")
-                    .attr("font-size", "0.75vw")
+                    .attr("font-size", "9.0px")
                     .attr("dy", "-0.35em")
                     .attr("text-decoration", "underline")
 
@@ -747,7 +746,7 @@ width = width- margin.left - margin.right;
             .attr("class", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", margin.bottom+margin.top)
+            .attr("y", margin.bottom-70)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
@@ -774,7 +773,7 @@ width = width- margin.left - margin.right;
         g.append("text")
             .attr("id", "title_text")
             .style("font-family", "Lato, sans-serif")
-            .attr("y", 0)
+            .attr("y", margin.top)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
             .attr("font-size", "1.0vw")
@@ -879,7 +878,7 @@ checker(g)
             .attr("class", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", margin.bottom+margin.top)
+            .attr("y", margin.bottom-70)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
@@ -905,7 +904,7 @@ checker(g)
         g.append("text")
             .attr("id", "title_text")
             .style("font-family", "Lato, sans-serif")
-            .attr("y", 0)
+            .attr("y", margin.top)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
             .attr("font-size", "1.0vw")
@@ -1003,7 +1002,7 @@ checker(g)
         // add title to plot 
         g.select("#title_text")
             .style("font-family", "Lato, sans-serif")
-            .attr("y", 0)
+            .attr("y", margin.top)
             .attr("x", width/2)
             .attr("text-anchor", "middle")
             .text("Social Exclusion correlated to Social Deprivation - year "  +year);
@@ -1073,10 +1072,7 @@ checker(g)
 
         height = height - margin.top - margin.bottom;
         width = width- margin.left - margin.right;
-
-        console.log(width)
-        console.log(width)
-
+        
         var g = svg.append("g")
             .attr("id", "WHOgender")
             .attr("width", width)
@@ -1323,6 +1319,7 @@ keys.forEach(function (t,i) {
         height = height - margin.top - margin.bottom;
         width = width- margin.left - margin.right;
 
+
         var g = svg.append("g")
             .attr("id", "WHOage")
             .attr("width", width)
@@ -1496,7 +1493,7 @@ keys.forEach(function (group,i) {
 
         keys.forEach(function (t,i) {
             legend.append('rect')
-                .attr("x", width -1)
+                .attr("x", width - margin.left-1)
                 .attr("y", margin.top-12 +20*i)
                 .attr("width", 64)
                 .attr("height", 36)
@@ -1504,7 +1501,7 @@ keys.forEach(function (group,i) {
                 .attr("background-color", "none");
 
             legend.append('rect')
-                .attr("x", width)
+                .attr("x", width - margin.left)
                 .attr("y", margin.top +20*i)
                 .attr("width", 12)
                 .attr("height", 12)
@@ -1512,7 +1509,7 @@ keys.forEach(function (group,i) {
 
 
             legend.append("text")
-                .attr("x", width +12)
+                .attr("x", width - margin.left +12)
                 .attr("y", margin.top +8+ +20*i)
                 .attr("font-size", "12px")
                 .text(groups[i])

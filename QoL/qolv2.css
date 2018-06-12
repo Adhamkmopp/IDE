@@ -1,6 +1,6 @@
 body {
     font-family: 'Lato', sans-serif;
-    background-color: darkgray;
+    background-color: #e2e2e2;
     font-weight: normal;
     margin: auto;
 }
@@ -46,7 +46,7 @@ h2 {
 
 .svg_map_donuts {
     display:inline-block;
-    background-color: #9896A4;
+    background-color: #dfddeb;
     float: left;
     border: 0.1px dashed;
 }
@@ -80,10 +80,10 @@ h2 {
 }
 
 #text_control_box{
-    height:40vh;
+    height:auto;
     width: 10vw;
     position: relative;
-    display:inline-block;
+    display:block;
     margin-top: 50px;
     float: bottom;
     background-color: ghostwhite;
@@ -252,22 +252,29 @@ fieldset[name="variables_selection"] {
 /*SVG*/
 
 #social_exclusion{
-
+    position: relative;
     background-color: ghostwhite;
+    max-height: inherit;
 }
 
 #social_deprivation{
+    position: relative;
     background-color: ghostwhite;
+    max-height: inherit;
+}
 }
 
 #WHO_points_gender{
     position: relative;
     background-color: ghostwhite;
+    max-height: inherit;
 }
 
 #WHO_points_age{
     position: relative;
     background-color: ghostwhite;
+    max-height: inherit;
+
 
 }
 
@@ -333,50 +340,45 @@ fieldset[name="variables_selection"] {
 .soc_excl_barplots{
     display: flex;
     position:relative;
-    width: 90%;
-    align-items:stretch;
-    align-content: stretch;
+    align-items: center;
+    width: 90vw;
+    max-height: 40vw;
     flex-direction: row;
-    flex: 1 1 100vw;
-    margin: auto;
+    margin: 1vw 1vw;
     background-color: ghostwhite;
-    border:20px;
+
 }
 
 .soc_depr_barplots{
     display: flex;
     position:relative;
-    width: 90%;
-    align-items:stretch;
-    align-content: stretch;
+    align-items: center;
+    width: 90vw;
+    max-height: 40vw;
     flex-direction: row;
-    flex: 1 1 100vw;
-    margin: auto;
-    background-color: ghostwhite;
-    border:20px;
-}
-
-.who_points_gender{ /*container*/
-    display: flex;
-    position:relative;
-    width: 90%;
-    align-items:stretch;
-    align-content: stretch;
-    flex-direction: row;
-    flex: 1 1 100vw;
-    margin: auto;
+    margin: 1vw 1vw;
     background-color: ghostwhite;
 }
 
-.who_points_age{ /*container*/
+.who_points_gender{
     display: flex;
     position:relative;
-    width: 90%;
-    align-items:stretch;
-    align-content: stretch;
+    align-items: center;
+    width: 90vw;
+    max-height: 40vw;
     flex-direction: row;
-    flex: 1 1 100vw;
-    margin: auto;
+    margin: 1vw 1vw;
+    background-color: ghostwhite;
+}
+
+.who_points_age{
+    display: flex;
+    position:relative;
+    align-items: center;
+    width: 90vw;
+    max-height: 40vw;
+    flex-direction: row;
+    margin: 1vw 1vw;
     background-color: ghostwhite;
 }
 
@@ -402,21 +404,12 @@ fieldset[name="variables_selection"] {
 
 .text_points {
     background-color: ghostwhite;
-    width: 40%;
+    width: 40vw;
+    height: auto;
     margin: auto;
-    float: right;
-    height: 100%;
     font-size: 1vw;
 }
 
-#text_points_age{
-    background-color: ghostwhite;
-    width: 40%;
-    margin: auto;
-    float: right;
-    height: 100%;
-    font-size: 1vw;
-}
 
 #div_conclusion{
     max-width: 100%;
@@ -427,17 +420,6 @@ fieldset[name="variables_selection"] {
     font-size: 1vw;
 
 }
-
-#div_remarks{
-    max-width: 100%;
-    margin: auto;
-    background-color: white;
-    position: center;
-    align-content: center;
-    font-size: 1vw;
-
-}
-
 
 div.inline {
     display: inline;
@@ -471,4 +453,21 @@ div.inblock {
     margin-left: 50px;
     border: 3px solid navajowhite;
     background-color: papayawhip;
+}
+.bottom_bar{
+    max-width: 100%;
+    margin: auto;
+    background-color: whitesmoke;
+    position: center;
+    align-content: center;
+}
+
+#div_remarks{
+    max-width: 100%;
+    margin: auto;
+    background-color: white;
+    position: center;
+    align-content: center;
+    font-size: 1vw;
+
 }
