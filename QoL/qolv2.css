@@ -306,6 +306,7 @@ fieldset[name="variables_selection"] {
     max-width: 100%;
     margin: auto;
     background-color: white;
+    font-size:1vw;
 }
 
 #text_intro_map{
