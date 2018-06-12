@@ -213,13 +213,13 @@ width = width- margin.left - margin.right;
                     .attr("id", "" + variablename + year+ "donut")
                     .attr("transform", function () {
                         if (j == 1 && year == 2007) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ( ((height-pie_outer_radius) / 6)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ( (height-pie_outer_radius) / 6) + ")"
                         } else if (year==2007){
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 4)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (height / 4) + ")"
                         } else if (j == 1 && year == 2011) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 2)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (height / 2) + ")"
                         } else {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height-pie_outer_radius))) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (height-pie_outer_radius) + ")"
                         }
                     })
                     .selectAll("arc")
