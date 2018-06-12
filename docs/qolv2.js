@@ -215,11 +215,11 @@ width = width- margin.left - margin.right;
                         if (j == 1 && year == 2007) {
                             return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ( ((height-pie_outer_radius) / 6)) + ")"
                         } else if (year==2007){
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 4)+100) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 4)) + ")"
                         } else if (j == 1 && year == 2011) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 3)) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height) / 2)) + ")"
                         } else {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height))) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (((height-pie_outer_radius)))) + ")"
                         }
                     })
                     .selectAll("arc")
@@ -752,11 +752,11 @@ width = width- margin.left - margin.right;
             .attr("id", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", 10)
+            .attr("y", 20)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
-            .attr("font-size", "1vw")
+            .attr("font-size", "0.5vw")
             .text("Social Exclusion");
 
 
@@ -883,11 +883,11 @@ checker(g)
             .attr("class", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", 10)
+            .attr("y", 20)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
-            .attr("font-size", "1vw")
+            .attr("font-size", "0.5vw")
             .text("Social Exclusion");
 
 
