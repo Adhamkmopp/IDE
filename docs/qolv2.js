@@ -961,7 +961,9 @@ function init() {
             .append("circle")
             .attr("fill", "steelblue")
             .attr("r", "0.5vw")
-            .attr("opacity",0.75)
+            .attr("stroke", "black")
+            .attr("stroke-width", "0.1vw")
+            .attr("opacity", 0.5)
             .attr("cx", function(d) { return x(d.Social_exclusion2007); })
             .attr("cy", function(d) { return y(+d.Deprivation2007); });
 
