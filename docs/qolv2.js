@@ -145,14 +145,18 @@ function init() {
             };
         });
         /* setting up the svg and tooltip */
-        
+
         var svg = d3.select("#pie_container");
-        var width = +svg.node().getBoundingClientRect().width
-        var height = +svg.node().getBoundingClientRect().height
+        var viewbox= svg.attr("viewBox").split(" ")
+        var size = viewbox.slice(2)
+        var width = size[0]
+        var height = size[1]
+        svg.attr("width", width)
+            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
-height = height - margin.top - margin.bottom;
-width = width- margin.left - margin.right;
+        height = height - margin.top - margin.bottom;
+        width = width- margin.left - margin.right;
 
         svg.append("text")
             .attr("dy", ".0em")
@@ -161,7 +165,7 @@ width = width- margin.left - margin.right;
             .text("Austria")
             .attr("text-anchor", "middle");
 
-        d3.select("body") // adds a placeholder tooltip we will select later on the donut 
+        d3.select("body") // adds a placeholder tooltip we will select later on the donut
             .append("div")
             .attr("class", "tooltip")
             .style("opacity", 0.9);
@@ -181,9 +185,9 @@ width = width- margin.left - margin.right;
                 .outerRadius(pie_outer_radius+15)
                 .innerRadius(pie_inner_radius+15);
 
-            //outerArc = d3.arc() 
-            //  .innerRadius(pie_outer_radius) 
-            //.outerRadius(pie_outer_radius + 2); 
+            //outerArc = d3.arc()
+            //  .innerRadius(pie_outer_radius)
+            //.outerRadius(pie_outer_radius + 2);
 
             svg.append("text")
                 .text(year)
@@ -198,7 +202,7 @@ width = width- margin.left - margin.right;
                 .attr("text-decoration", "underline");
 
 
-            //sets the start and end angles for all the values in a standard pie 
+            //sets the start and end angles for all the values in a standard pie
             d3.keys(country_object[year]["Austria"]).forEach( function (variablename, j) {
                 var somepie = d3.pie()
                     .padAngle(0.03)
@@ -207,7 +211,7 @@ width = width- margin.left - margin.right;
                     })(country_object[year]["Austria"][variablename]);
 
 
-                /*Setting up the donuts 1/3rd of the svg apart, and sets the second donut at a different 
+                /*Setting up the donuts 1/3rd of the svg apart, and sets the second donut at a different
                 height in the middle of the svg*/
                 var edu = svg.append("g")
                     .attr("id", "" + variablename + year+ "donut")
@@ -215,16 +219,16 @@ width = width- margin.left - margin.right;
                         if (j == 1 && year == 2007) {
                             return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + ( (height-pie_outer_radius) / 6) + ")"
                         } else if (year==2007){
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (height / 4) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (height / 3) + ")"
                         } else if (j == 1 && year == 2011) {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (height / 2) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (height*2 / 3) + ")"
                         } else {
-                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (height-pie_outer_radius) + ")"
+                            return "translate(" + ((width-pie_outer_radius) * ((j + 1) / 3)) + "," + (height*5/6) + ")"
                         }
                     })
                     .selectAll("arc")
                     .data(somepie.sort(function (a, b) {
-                        // sorting is important if we want variable pie sizes later but I don't believe we will need it 
+                        // sorting is important if we want variable pie sizes later but I don't believe we will need it
                         return d3.ascending(a.value, b.value);
                     }))
                     .enter()
@@ -273,10 +277,10 @@ width = width- margin.left - margin.right;
                         var i = d3.interpolate(d.startAngle + 0.1, d.endAngle);
 
                         return function (t) {
-                            /*  var offset = (j)*5 
-                              var arc = d3.arc() 
-                                  .outerRadius(40) 
-                                 .innerRadius(60 + offset); 
+                            /*  var offset = (j)*5
+                              var arc = d3.arc()
+                                  .outerRadius(40)
+                                 .innerRadius(60 + offset);
                               */ d.endAngle = i(t);
 
                             return arc(d)
@@ -284,9 +288,9 @@ width = width- margin.left - margin.right;
                     });
 
 
-                /* Appending corresponding variable names on slices. They are set on an arc centroid slightly bigger than 
-                the original arc, and moved even further by 0.35em depending on their location. This was necessary to avoid text 
-                overlaps without setting up complicated collision detection functions 
+                /* Appending corresponding variable names on slices. They are set on an arc centroid slightly bigger than
+                the original arc, and moved even further by 0.35em depending on their location. This was necessary to avoid text
+                overlaps without setting up complicated collision detection functions
                  */
                 edu.append("text")
                     .attr("transform", function(d) {
@@ -306,8 +310,8 @@ width = width- margin.left - margin.right;
                     .attr("opacity", function (d) {
                         return +d.data == 0 ? 0 : 0.8;
                     });
-                /* Adds a simple line to the variable name 
- 
+                /* Adds a simple line to the variable name
+
                 */
                 edu.append("path")
                     .attr("class", "lineToLabel")
@@ -508,12 +512,16 @@ width = width- margin.left - margin.right;
          */
 
         var polydata = topojson.feature(map_data, map_data.objects.countries).features;
-        // var neighbors = topojson.neighbors(map_data.objects.countries.geometries); 
+        // var neighbors = topojson.neighbors(map_data.objects.countries.geometries);
         var names = map_data.objects.countries.geometries;
 
         var svg = d3.select('#europe_container')
-        var width = +svg.node().getBoundingClientRect().width
-        var height = +svg.node().getBoundingClientRect().height
+        var viewbox= svg.attr("viewBox").split(" ")
+        var size = viewbox.slice(2)
+        var width = size[0]
+        var height = size[1]
+        svg.attr("width", width)
+            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -522,7 +530,7 @@ width = width- margin.left - margin.right;
             .attr("class", "map")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // Choose projection 
+        // Choose projection
         var projection = d3.geoMercator()
             .scale(500)
             .center([42, 59]);
@@ -539,7 +547,7 @@ width = width- margin.left - margin.right;
             .append("path")
             .attr("d", path)
             .attr("fill", function (d, i) {
-                // if only year or variable is selected nothing happens 
+                // if only year or variable is selected nothing happens
                 if(names[i].name){
                     return "grey"
                 }
@@ -570,7 +578,7 @@ width = width- margin.left - margin.right;
 
             });
 
-        // add name to country 
+        // add name to country
         g.selectAll(".countries")
             .data(polydata)
             .enter().append("text")
@@ -584,7 +592,7 @@ width = width- margin.left - margin.right;
                 }
             });
 
-        // color scale for existance of countries 
+        // color scale for existance of countries
         var color_basic = d3.scaleOrdinal()
             .domain([0, 1])
             .range(['#d3d3d3', 'grey']);
@@ -600,7 +608,7 @@ width = width- margin.left - margin.right;
 
     function update_legend(color_scale, selected_variable){
 
-        // Append a linearGradient element to the defs and give it a unique id 
+        // Append a linearGradient element to the defs and give it a unique id
         if(selected_variable === "Social_Exclusion"){
             linearGradient = d3.select("#def_soc_excl").append("linearGradient")
                 .attr("id", "linear-gradient_soc");
@@ -610,7 +618,7 @@ width = width- margin.left - margin.right;
         }
 
 
-        // Define scales for legend axes 
+        // Define scales for legend axes
         var x_scale_soc_excl = d3.scaleLinear()
             .domain([1.5, 2.9])
             .range([20, 319]);
@@ -619,7 +627,7 @@ width = width- margin.left - margin.right;
             .domain([49, 72])
             .range([20, 319]);
 
-        // Define x-axes 
+        // Define x-axes
         var x_axis_who = d3.axisBottom()
             .ticks(5)
             .scale(x_scale_who);
@@ -695,14 +703,14 @@ width = width- margin.left - margin.right;
         dataset = dataset.sort(function (a,b) {
             return d3.descending(a.Social_exclusion2011, b.Social_exclusion2011); });
 
-                
+
         var svg = d3.select("#social_exclusion");
         var viewbox= svg.attr("viewBox").split(" ")
         var size = viewbox.slice(2)
         var width = size[0]
         var height = size[1]
-         svg.attr("width", width)
-           .attr("height", height);
+        svg.attr("width", width)
+            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -752,23 +760,23 @@ width = width- margin.left - margin.right;
             .attr("id", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", 20)
+            .attr("y", margin.bottom + margin.top)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
-            .attr("font-size", "0.5vw")
-            .text("Social Exclusion");
+            .attr("font-size", "0.75vw")
+            .text("Social Contact");
 
 
         // add text to the Y axis
-       g.append("text")
+        g.append("text")
             .attr("id", "ylab")
             .attr("transform", "rotate(-90)")
             .attr("y", 50 - margin.left)
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
-            .text("Social Deprivation")
+            .text("Social Exclusion")
             .attr("font-size", "12px");
 
 
@@ -790,40 +798,64 @@ width = width- margin.left - margin.right;
                 return d.Countries
             })
             .enter()
+            .append("g")
+            .attr("class", "countryDot")
+
+            g.selectAll(".countryDot")
             .append("circle")
             .attr("fill", "steelblue")
-            .attr("r", 3.5)
+            .attr("r", "0.5vw")
+            .attr("stroke", "black")
+            .attr("stroke-width", "0.1vw")
+            .attr("opacity", 0.5)
             .attr("cx", function(d) { return x(d.Social_exclusion2011); })
             .attr("cy", function(d) { return y(+d.Social_contact2011); });
 
 
         g.select(".points")
-            .selectAll("text")
-            .data(dataset, function (d) {
-                return d.Countries
-            })
-            .enter()
+            .selectAll(".countryDot")
             .append("text")
             .attr("class", "countryLabels")
             .text(function (d) {
                 return d.Countries
             }).attr("x", function(d) { return x(d.Social_exclusion2011); })
             .attr("y", function(d) { return y(+d.Social_contact2011); })
-            .attr("opacity", 0.5)
+            .attr("opacity", 1.0)
+            .attr("font-size", "0.5vw")
+            .attr("color", "black");
 
-            .on("mouseover", function () {
+        g.selectAll("circle")
+            .on("mouseover", function (d,i) {
+
                 d3.select(this)
-                    .classed("highlighted", true)
+                    .transition()
+                    .duration(200)
+                    .attr("r", "0.75vw")
+                    .attr("opacity", 1.0)
+                    ;
+                d3.select(this.parentNode)
+                    .select(".countryLabels")
+                    .transition()
+                    .duration(200)
+                    .attr("transform", "translate(-15,-10 )");
+                ;
+
             })
             .on("mouseout", function () {
                 d3.select(this)
-                    .classed("highlighted", false)
-
+                    .transition()
+                    .duration(200)
+                    .attr("r", "0.5vw")
+                    .attr("opacity", 0.5);
+                d3.select(this.parentNode)
+                    .select(".countryLabels")
+                    .transition()
+                    .duration(200)
+                    .attr("transform", "translate(0,0 )");
 
             });
 
-
-checker(g)
+        checker(g)
 
     }
 
@@ -833,12 +865,12 @@ checker(g)
             return d3.descending(a.Social_exclusion2007, b.Social_exclusion2007); });
 
         var svg = d3.select("#social_deprivation");
-       var viewbox= svg.attr("viewBox").split(" ")
+        var viewbox= svg.attr("viewBox").split(" ")
         var size = viewbox.slice(2)
         var width = size[0]
         var height = size[1]
-         svg.attr("width", width)
-           .attr("height", height);
+        svg.attr("width", width)
+            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -878,20 +910,20 @@ checker(g)
             .attr("text-anchor", "middle");
 
 
-        // add text to the X axis 
+        // add text to the X axis
         g.append("g")
             .attr("class", "xlab")
             .attr("transform", "translate(0," + height + ")")
             .append("text")
-            .attr("y", 20)
+            .attr("y", margin.bottom + margin.top)
             .attr("x", width / 2)
             .attr("dx", "1em")
             .attr("text-anchor", "middle")
-            .attr("font-size", "0.5vw")
+            .attr("font-size", "0.75vw")
             .text("Social Exclusion");
 
 
-        // add text to the Y axis 
+        // add text to the Y axis
         g.append("text")
             .attr("id", "ylab")
             .attr("transform", "rotate(-90)")
@@ -902,9 +934,9 @@ checker(g)
             .text("Social Deprivation")
             .attr("font-size", "12px");
 
-   
 
-        // add title to plot 
+
+        // add title to plot
         g.append("text")
             .attr("id", "title_text")
             .style("font-family", "Lato, sans-serif")
@@ -922,38 +954,58 @@ checker(g)
                 return d.Countries
             })
             .enter()
+            .append("g")
+            .attr("class", "countryDot")
+
+        g.selectAll(".countryDot")
             .append("circle")
             .attr("fill", "steelblue")
-            .attr("r", 3.5)
+            .attr("r", "0.5vw")
+            .attr("opacity",0.75)
             .attr("cx", function(d) { return x(d.Social_exclusion2007); })
             .attr("cy", function(d) { return y(+d.Deprivation2007); });
 
 
         g.select(".points")
-            .selectAll("text")
-            .data(dataset, function (d) {
-                return d.Countries
-            })
-            .enter()
+            .selectAll(".countryDot")
             .append("text")
             .attr("class", "countryLabels")
             .text(function (d) {
                 return d.Countries
             }).attr("x", function(d) { return x(d.Social_exclusion2007); })
             .attr("y", function(d) { return y(+d.Deprivation2007); })
-            .attr("opacity", 0.5)
+            .attr("opacity", 0.75)
 
-            .on("mouseover", function () {
+
+        g.selectAll("circle")
+            .on("mouseover", function (d,i) {
+
                 d3.select(this)
-                    .classed("highlighted", true)
+                    .transition()
+                    .duration(200)
+                    .attr("r", "0.75vw")
+                    .attr("opacity", 1.0)
+                ;
+                d3.select(this.parentNode)
+                    .select(".countryLabels")
+                    .transition()
+                    .duration(200)
+                    .attr("transform", "translate(-15,-10 )");
+
             })
             .on("mouseout", function () {
                 d3.select(this)
-                    .classed("highlighted", false)
-
+                    .transition()
+                    .duration(200)
+                    .attr("r", "0.5vw")
+                    .attr("opacity", 0.5);
+                d3.select(this.parentNode)
+                    .select(".countryLabels")
+                    .transition()
+                    .duration(200)
+                    .attr("transform", "translate(0,0 )");
 
             });
-
 
 
         d3.select(".soc_depr_barplots").select(".arrow.right")
@@ -980,8 +1032,8 @@ checker(g)
         var size = viewbox.slice(2)
         var width = size[0]
         var height = size[1]
-         svg.attr("width", width)
-           .attr("height", height);
+        svg.attr("width", width)
+            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -1010,7 +1062,7 @@ checker(g)
             .attr("transform", "translate(0," + 10 + ")")
             .attr("text-anchor", "middle");
 
-        // add title to plot 
+        // add title to plot
         g.select("#title_text")
             .style("font-family", "Lato, sans-serif")
             .attr("y", margin.top)
@@ -1018,15 +1070,17 @@ checker(g)
             .attr("text-anchor", "middle")
             .text("Social Exclusion correlated to Social Deprivation - year "  +year);
 
-        g.selectAll("circle")
+        g
+            .selectAll("circle")
             .data(dataset_updated)
+
             .transition()
             .duration(500)
             .delay(function(d, i) {
                 return i / 30* 1000;
             }).on("start", function() {
             d3.select(this)
-                .attr("fill", "magenta")
+                .attr("fill", "orangered")
                 .attr("r", 6);
         })
             .attr("cx", function(d) {
@@ -1035,20 +1089,16 @@ checker(g)
             .attr("cy", function(d) { return y(d["Deprivation"+year]); })
 
             .on("end", function() {
-            d3.select(this)
-                .attr("r", 3.5)
-                .attr("fill", "steelblue")
-        });
+                d3.select(this)
+                    .attr("r", "0.5vw")
+                    .attr("fill", "steelblue")
+            });
 
 
-        g.select(".points")
-            .selectAll("text")
-            .data(dataset, function (d) {
-                return d.Countries
-            })
-            .text(function (d) {
-                return d.Countries
-            })
+
+        g
+            .selectAll(".countryLabels")
+            .data(dataset_updated)
             .transition()
             .duration(500)
             .delay(function(d, i) {
@@ -1056,18 +1106,43 @@ checker(g)
             })
             .attr("x", function(d) { return x(+d["Social_exclusion"+year]); })
             .attr("y", function(d) { return y( d["Deprivation"+year]); })
-            .attr("opacity", 0.5)
-
-            .on("mouseover", function () {
-                d3.select(this)
-                    .classed("highlighted", true)
-            })
-            .on("mouseout", function () {
-                d3.select(this)
-                    .classed("highlighted", false)
-
-
+            .text(function (d) {
+                return d.Countries
             });
+
+
+
+        g.selectAll("circle")
+            .on("mouseover", function (d,i) {
+
+                d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .attr("r", "0.75vw")
+                    .attr("opacity", 1.0)
+                ;
+                d3.select(this.parentNode)
+                    .select(".countryLabels")
+                    .transition()
+                    .duration(200)
+                    .attr("transform", "translate(-15,-10 )");
+
+
+            })  .on("mouseout", function () {
+            d3.select(this)
+                .transition()
+                .duration(200)
+                .attr("r", "0.5vw")
+                .attr("opacity", 0.5);
+            d3.select(this.parentNode)
+                .select(".countryLabels")
+                .transition()
+                .duration(200)
+                .attr("transform", "translate(0,0 )");
+
+        });
+
+
 
 
 
@@ -1081,13 +1156,13 @@ checker(g)
         var size = viewbox.slice(2)
         var width = size[0]
         var height = size[1]
-         svg.attr("width", width)
-           .attr("height", height);
+        svg.attr("width", width)
+            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
         width = width- margin.left - margin.right;
-        
+
         var g = svg.append("g")
             .attr("id", "WHOgender")
             .attr("width", width)
@@ -1101,7 +1176,7 @@ checker(g)
             .rangeRound([height, 0]);
 
         var z = d3.scaleOrdinal()
-            .range(["#955251", "#004B8D"]);
+            .range(["orangered", "steelblue"]);
 
 
         dataset = dataset.sort(function (a,b) {
@@ -1121,37 +1196,47 @@ checker(g)
         z.domain(keys);
 
 
-var data = dataset.map(function (t) {
-    return  {Country : t.Countries, WHO:[t.MaleWHO2007,t.FemaleWHO2007]}
-       // WHO = [t.MaleWHO2007,t.FemaleWHO2007]}
-})
+        var data = dataset.map(function (t) {
+            return  {Country : t.Countries, WHO:[t.MaleWHO2007,t.FemaleWHO2007]}
+            // WHO = [t.MaleWHO2007,t.FemaleWHO2007]}
+        })
 
-            g.selectAll("#WHOgender")
-                .data(keys)
+        g.selectAll("#WHOgender")
+            .data(keys)
+            .enter()
+            .append("g")
+            .attr("class", function (t) {
+                return t
+            });
+
+        histo = [0,0];
+        keys.forEach(function (t,i) {
+
+            g.select("."+t)
+                .selectAll("g")
+                .data(data)
                 .enter()
                 .append("g")
-                .attr("class", function (t) {
-                    return t
-                })
+                .attr("class", "whoage");
+                g.selectAll(".whoage")
+                    .append("circle")
+                    .attr("cx", function (d) {
 
-keys.forEach(function (t,i) {
+                    return x(d.Country);})
+                    .attr("cy", function (d) {
 
-    g.select("."+t)
-        .selectAll("circle")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("cx", function (d) {return x(d.Country);})
-        .attr("cy", function (d) {
+                    return y( d.WHO[i]);})
+                .attr("fill", function(d) {return z(t); })
+                .attr('opacity', 0.75)
+                .attr("r", "0.25vw")
+                ;
 
-            return y( d.WHO[i]);})
-        .attr("fill", function(d) {return z(t); })
-        .attr('opacity', 1)
-        .attr("r", 5);
-})
+        });
 
 
-        // add title to X axis 
+
+
+        // add title to X axis
         g.append("g")
             .attr("class", "x-axis")
             .attr("transform", "translate(0," + height + ")")
@@ -1182,7 +1267,7 @@ keys.forEach(function (t,i) {
             .text("WHO Mental Well-Being Index Averages, Year: 2007")
             .attr("font-size", "12px");
 
-        // add title to plot 
+        // add title to plot
         g.append("text")
             .attr("id", "title")
             .style("font-family", "Lato, sans-serif")
@@ -1232,7 +1317,7 @@ keys.forEach(function (t,i) {
             .attr("y", margin.top -20)
             .attr("width", 10)
             .attr("height", 10)
-            .attr("fill",  "#a05d56");
+            .attr("fill",  "orangered");
 
         legend.append("text")
             .attr("x", width - margin.left +10)
@@ -1255,8 +1340,8 @@ keys.forEach(function (t,i) {
         var size = viewbox.slice(2)
         var width = size[0]
         var height = size[1]
-         svg.attr("width", width)
-           .attr("height", height);
+        svg.attr("width", width)
+            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -1270,7 +1355,7 @@ keys.forEach(function (t,i) {
             .rangeRound([height, 0]);
 
         var z = d3.scaleOrdinal()
-            .range(["#955251", "#004B8D"]);
+            .range(["orangered", "steelblue"]);
 
 
         dataset = dataset.sort(function (a,b) {
@@ -1289,8 +1374,9 @@ keys.forEach(function (t,i) {
         keys.forEach(function (t,i) {
 
             g.select("."+t)
-                .selectAll("circle")
+                .selectAll(".whoage")
                 .data(data)
+                .selectAll("circle")
                 .transition()
                 .duration(200)
                 .attr("cx", 0)
@@ -1303,6 +1389,7 @@ keys.forEach(function (t,i) {
                 .attr("cx", function (d) {return x(d.Country);})
                 .attr("cy", function (d) {
                     return y(d.WHO[i]);})
+                .attr("fill", function(d) {return z(t); });
 
         });
 
@@ -1318,7 +1405,7 @@ keys.forEach(function (t,i) {
             .ease(d3.easeLinear)
             .call(d3.axisBottom(x));
 
-        // add title to plot 
+        // add title to plot
         g.select("#ylab")
             .text("WHO Mental Well-Being Index Averages, Year: "+year);
         g.select("#title")
@@ -1335,8 +1422,8 @@ keys.forEach(function (t,i) {
         var size = viewbox.slice(2)
         var width = size[0]
         var height = size[1]
-         svg.attr("width", width)
-           .attr("height", height);
+        svg.attr("width", width)
+            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -1356,10 +1443,10 @@ keys.forEach(function (t,i) {
 
         var z = d3.scaleOrdinal()
             .range(["#fef0d9",
-"#fdcc8a",
-"#fc8d59",
-"#e34a33",
-"#b30000"]);
+                "#fdcc8a",
+                "#fc8d59",
+                "#e34a33",
+                "#b30000"]);
 
 
         x.domain(dataset.map(function (d) {return d.Countries;}));
@@ -1433,27 +1520,27 @@ keys.forEach(function (t,i) {
         });
 
 
-keys.forEach(function (group,i) {
-    g.append("g")
-        .attr("class",group)
-        .selectAll(".circles")
-        .data(cakes, function (d,i) {
-            return d.Country
+        keys.forEach(function (group,i) {
+            g.append("g")
+                .attr("class",group)
+                .selectAll(".circles")
+                .data(cakes, function (d,i) {
+                    return d.Country
+                })
+                .enter()
+                .append("circle")
+                .attr("cx", function (d) {
+
+                    return  x(d.Country);
+
+                })
+                .attr("cy", function (d) {
+                    return y( d.val[i][1]);})
+                .attr("fill", function(d) {return z(group); })
+                .attr('opacity', 1)
+                .attr("r", 5);
+
         })
-        .enter()
-        .append("circle")
-        .attr("cx", function (d) {
-
-            return  x(d.Country);
-
-        })
-        .attr("cy", function (d) {
-            return y( d.val[i][1]);})
-        .attr("fill", function(d) {return z(group); })
-        .attr('opacity', 1)
-        .attr("r", 5);
-
-})
 
 
         g.append("g")
@@ -1486,7 +1573,7 @@ keys.forEach(function (group,i) {
             .text("WHO Mental Well-Being Averages")
             .attr("font-size", "12px");
 
-        // add title to plot 
+        // add title to plot
         g.append("text")
             .attr("id", "title")
             .style("font-family", "Lato, sans-serif")
@@ -1546,8 +1633,8 @@ keys.forEach(function (group,i) {
         var size = viewbox.slice(2)
         var width = size[0]
         var height = size[1]
-         svg.attr("width", width)
-           .attr("height", height);
+        svg.attr("width", width)
+            .attr("height", height);
         var margin = {top: 0.05*height, right: 0.1*width, bottom:0.05*height, left: 0.1*width};
 
         height = height - margin.top - margin.bottom;
@@ -1579,7 +1666,7 @@ keys.forEach(function (group,i) {
 
 
         var cake = []
-var cakes =[]
+        var cakes =[]
         dataset.forEach(function (t) {
 
             cake.push({Country:t.Countries, group:"a18to24WHO_", val: t["a18to24WHO_"+year]})
